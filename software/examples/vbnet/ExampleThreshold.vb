@@ -12,19 +12,19 @@ Module ExampleThreshold
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim industrial_dual_0_20_ma As New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
+        Dim industrial_dual_0_20ma As New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
         ' Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-        industrial_dual_0_20_ma.SetDebouncePeriod(1000)
+        industrial_dual_0_20ma.SetDebouncePeriod(1000)
 
         ' Register threshold reached callback to function ReachedCB
-        AddHandler industrial_dual_0_20_ma.CurrentReached, AddressOf ReachedCB
+        AddHandler industrial_dual_0_20ma.CurrentReached, AddressOf ReachedCB
 
         ' Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-        industrial_dual_0_20_ma.SetCurrentCallbackThreshold(1, ">", 30*100, 0)
+        industrial_dual_0_20ma.SetCurrentCallbackThreshold(1, ">", 30*100, 0)
 
         System.Console.WriteLine("Press key to exit")
         System.Console.ReadKey()

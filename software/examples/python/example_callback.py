@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_industrial_dual_0_20_ma import IndustrialDual020mA
+from tinkerforge.bricklet_industrial_dual_0_20ma import IndustrialDual020mA
 
 # Callback function for current callback (parameter has unit nA)
 def cb_current(sensor, current):
@@ -28,3 +28,4 @@ if __name__ == "__main__":
     dual020.register_callback(dual020.CALLBACK_CURRENT, cb_current)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
+    ipcon.disconnect()

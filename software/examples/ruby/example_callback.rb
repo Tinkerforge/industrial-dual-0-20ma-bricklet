@@ -2,7 +2,7 @@
 # -*- ruby encoding: utf-8 -*-
 
 require 'tinkerforge/ip_connection'
-require 'tinkerforge/bricklet_industrial_dual_0_20_ma'
+require 'tinkerforge/bricklet_industrial_dual_0_20ma'
 
 include Tinkerforge
 
@@ -21,10 +21,11 @@ ipcon.connect HOST, PORT # Connect to brickd
 #       current has changed since the last call!
 dual020.set_current_callback_period 1, 1000
 
-# Register current callback (parameter has unit mA)
+# Register current callback (parameter has unit nA)
 dual020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, current|
   puts "Current (sensor #{sensor}): #{current/(1000.0*1000.0)} mA"
 end
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

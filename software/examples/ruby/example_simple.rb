@@ -2,7 +2,7 @@
 # -*- ruby encoding: utf-8 -*-
 
 require 'tinkerforge/ip_connection'
-require 'tinkerforge/bricklet_industrial_dual_0_20_ma'
+require 'tinkerforge/bricklet_industrial_dual_0_20ma'
 
 include Tinkerforge
 
@@ -22,3 +22,4 @@ puts "Current: #{current} mA"
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

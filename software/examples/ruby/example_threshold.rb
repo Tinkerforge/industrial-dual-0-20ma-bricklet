@@ -2,7 +2,7 @@
 # -*- ruby encoding: utf-8 -*-
 
 require 'tinkerforge/ip_connection'
-require 'tinkerforge/bricklet_industrial_dual_0_20_ma'
+require 'tinkerforge/bricklet_industrial_dual_0_20ma'
 
 include Tinkerforge
 
@@ -29,3 +29,4 @@ dual020.set_current_callback_threshold 1, '>', 10*1000*1000, 0
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

@@ -10,7 +10,7 @@ $host = 'localhost';
 $port = 4223;
 $uid = 'XYZ'; // Change to your UID
 
-// Callback function for current callback (parameter has unit mA)
+// Callback function for current callback (parameter has unit nA)
 function cb_current($sensor, $current)
 {
     echo "Current (sensor " . $sensor . "): " . $current / (1000.0*1000.0) . " mA\n";

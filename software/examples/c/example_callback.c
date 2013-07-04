@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "ip_connection.h"
-#include "bricklet_industrial_dual_0_20_ma.h"
+#include "bricklet_industrial_dual_0_20ma.h"
 
 #define HOST "localhost"
 #define PORT 4223
@@ -22,7 +22,7 @@ int main() {
 
 	// Create device object
 	IndustrialDual020mA dual020;
-	industrial_dual_0_20_ma_create(&dual020, UID, &ipcon); 
+	industrial_dual_0_20ma_create(&dual020, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -34,13 +34,13 @@ int main() {
 	// Set Period for current callback for sensor 1 to 1s (1000ms)
 	// Note: The callback is only called every second if the 
 	//       current has changed since the last call!
-	industrial_dual_0_20_ma_set_current_callback_period(&dual020, 1, 1000);
+	industrial_dual_0_20ma_set_current_callback_period(&dual020, 1, 1000);
 
 	// Register current callback to function cb_current
-	industrial_dual_0_20_ma_register_callback(&dual020,
-	                                          INDUSTRIAL_DUAL_0_20_MA_CALLBACK_CURRENT,
-	                                          (void *)cb_current,
-	                                          NULL);
+	industrial_dual_0_20ma_register_callback(&dual020,
+	                                         INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT,
+	                                         (void *)cb_current,
+	                                         NULL);
 
 	printf("Press key to exit\n");
 	getchar();

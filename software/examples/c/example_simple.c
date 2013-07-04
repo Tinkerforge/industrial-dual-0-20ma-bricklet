@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "ip_connection.h"
-#include "bricklet_industrial_dual_0_20_ma.h"
+#include "bricklet_industrial_dual_0_20ma.h"
 
 #define HOST "localhost"
 #define PORT 4223
@@ -15,7 +15,7 @@ int main() {
 
 	// Create device object
 	IndustrialDual020mA dual020;
-	industrial_dual_0_20_ma_create(&dual020, UID, &ipcon); 
+	industrial_dual_0_20ma_create(&dual020, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -26,7 +26,7 @@ int main() {
 
 	// Get current current from sensor 1 (unit is nA)
 	int32_t current;
-	if(industrial_dual_0_20_ma_get_current(&dual020, 1, &current) < 0) {
+	if(industrial_dual_0_20ma_get_current(&dual020, 1, &current) < 0) {
 		fprintf(stderr, "Could not get value, probably timeout\n");
 		exit(1);
 	}
