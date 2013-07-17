@@ -9,13 +9,15 @@ class Example
 	// Callback for current greater than 10mA
 	static void ReachedCB(BrickletIndustrialDual020mA sender, byte sensor, int current)
 	{
-		System.Console.WriteLine("Current (sensor " + sensor + ") is greater than 10mA: " + current/(1000.0*1000.0) + "mA");
+		System.Console.WriteLine("Current (sensor " + sensor + ") is greater than 10mA: " +
+		                         current/(1000.0*1000.0) + "mA");
 	}
 
 	static void Main() 
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletIndustrialDual020mA dual020 = new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+		BrickletIndustrialDual020mA dual020 =
+		  new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected

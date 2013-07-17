@@ -9,13 +9,15 @@ class Example
 	// Callback function for current callback (parameter has unit nA)
 	static void CurrentCB(BrickletIndustrialDual020mA sender, byte sensor, int current)
 	{
-		System.Console.WriteLine("Current (sensor " + sensor + "): " + current/(1000.0*1000.0) + " mA");
+		System.Console.WriteLine("Current (sensor " + sensor + "): " +
+		                         current/(1000.0*1000.0) + " mA");
 	}
 
 	static void Main() 
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletIndustrialDual020mA dual020 = new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+		BrickletIndustrialDual020mA dual020 =
+		  new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected

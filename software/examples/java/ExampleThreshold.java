@@ -10,7 +10,8 @@ public class ExampleThreshold {
 	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletIndustrialDual020mA dual020 = new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+		BrickletIndustrialDual020mA dual020 =
+		  new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 		ipcon.connect(host, port); // Connect to brickd
 		// Don't use device before ipcon is connected
@@ -24,7 +25,8 @@ public class ExampleThreshold {
 		// Add and implement current reached listener (called if current is greater than 10mA)
 		dual020.addCurrentReachedListener(new BrickletIndustrialDual020mA.CurrentReachedListener() {
 			public void currentReached(short sensor, int current) {
-				System.out.println("Current (sensor " + sensor + ") is greater than 10mA: " + current/(1000.0*1000.0));
+				System.out.println("Current (sensor " + sensor + ") is greater than 10mA: " +
+				                   current/(1000.0*1000.0));
 			}
 		});
 
