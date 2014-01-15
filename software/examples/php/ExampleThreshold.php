@@ -6,9 +6,9 @@ require_once('Tinkerforge/BrickletIndustrialDual020mA.php');
 use Tinkerforge\IPConnection;
 use Tinkerforge\BrickletIndustrialDual020mA;
 
-$host = 'localhost';
-$port = 4223;
-$uid = 'XYZ'; // Change to your UID
+const HOST = 'localhost';
+const PORT = 4223;
+const UID = 'XYZ'; // Change to your UID
 
 // Callback for current greater than 5A
 function cb_reached($sensor, $current)
@@ -17,9 +17,9 @@ function cb_reached($sensor, $current)
 }
 
 $ipcon = new IPConnection(); // Create IP connection
-$dual020 = new BrickletIndustrialDual020mA($uid, $ipcon); // Create device object
+$dual020 = new BrickletIndustrialDual020mA(UID, $ipcon); // Create device object
 
-$ipcon->connect($host, $port); // Connect to brickd
+$ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
