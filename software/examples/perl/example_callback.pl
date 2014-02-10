@@ -7,8 +7,8 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'ftn'; # Change to your UID
 
-my $ipcon = IPConnection->new(); # Create IP connection
-my $dual020 = BrickletIndustrialDual020mA->new(&UID, $ipcon); # Create device object
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $dual020 = Tinkerforge::BrickletIndustrialDual020mA->new(&UID, $ipcon); # Create device object
 
 # Callback function for current callback (parameter has unit nA)
 sub cb_current
