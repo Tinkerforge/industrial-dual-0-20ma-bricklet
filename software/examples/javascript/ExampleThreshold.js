@@ -10,9 +10,7 @@ var dual020 = new BrickletIndustrialDual020mA(UID, ipcon);// Create device objec
 
 ipcon.connect(HOST, PORT,
     function(error) {
-        if(error === IPConnection.ERROR_ALREADY_CONNECTED) {
-            console.log('Error: Already connected');        
-        }
+        console.log('Error: '+error);        
     }
 );// Connect to brickd
 
@@ -35,14 +33,10 @@ dual020.on(BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
 );
 
 console.log("Press any key to exit ...");
-process.stdin.on('data', function(data) {
-	    ipcon.disconnect(
-            function(error) {
-                if(error === IPConnection.ERROR_NOT_CONNECTED) {
-                    console.log('Error: Not connected');        
-                }
-            }
-        );
-process.exit(0);
-});
+process.stdin.on('data',
+    function(data) {
+        ipcon.disconnect();
+        process.exit(0);
+    }
+);
 
