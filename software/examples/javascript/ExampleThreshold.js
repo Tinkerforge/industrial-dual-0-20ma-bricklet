@@ -1,12 +1,11 @@
-var IPConnection = require('Tinkerforge/IPConnection');
-var BrickletIndustrialDual020mA = require('Tinkerforge/BrickletIndustrialDual020mA');
+var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
 var UID = 'ftn';// Change to your UID
 
-var ipcon = new IPConnection();// Create IP connection
-var dual020 = new BrickletIndustrialDual020mA(UID, ipcon);// Create device object
+var ipcon = new Tinkerforge.IPConnection();// Create IP connection
+var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon);// Create device object
 
 ipcon.connect(HOST, PORT,
     function(error) {
@@ -15,7 +14,7 @@ ipcon.connect(HOST, PORT,
 );// Connect to brickd
 
 // Don't use device before ipcon is connected
-ipcon.on(IPConnection.CALLBACK_CONNECTED,
+ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         dual020.setDebouncePeriod(10000);
@@ -25,7 +24,7 @@ ipcon.on(IPConnection.CALLBACK_CONNECTED,
 );
 
 // Register threshold reached callback
-dual020.on(BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
+dual020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
     // Callback for current greater than 10mA
     function(sensor, current) {
         console.log('Current (sensor '+sensor+') is greater than 10mA: '+current/(1000*1000)+' mA');
