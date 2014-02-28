@@ -2,24 +2,24 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'ftn';// Change to your UID
+var UID = 'ftn'; // Change to your UID
 
-var ipcon = new Tinkerforge.IPConnection();// Create IP connection
-var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon);// Create device object
+var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
+var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
     function(error) {
-        console.log('Error: '+error);        
+        console.log('Error: '+error);
     }
-);// Connect to brickd
-
+); // Connect to brickd
 // Don't use device before ipcon is connected
+
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         dual020.setDebouncePeriod(10000);
         // Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-        dual020.setCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);      
+        dual020.setCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
     }
 );
 
@@ -38,4 +38,3 @@ process.stdin.on('data',
         process.exit(0);
     }
 );
-
