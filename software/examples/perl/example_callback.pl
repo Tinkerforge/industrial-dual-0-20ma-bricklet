@@ -14,8 +14,10 @@ my $dual020 = Tinkerforge::BrickletIndustrialDual020mA->new(&UID, $ipcon); # Cre
 sub cb_current
 {
     my ($sensor, $current) = @_;
-    print "\nCurrent (sensor ".$sensor."): ".$current/(1000.0*1000.0)." mA\n";
+
+    print "Current (sensor $sensor): ".$current/(1000.0*1000.0)." mA\n";
 }
+
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
@@ -27,7 +29,7 @@ $dual020->set_current_callback_period(1, 1000);
 # Register current callback to function cb_current
 $dual020->register_callback($dual020->CALLBACK_CURRENT, 'cb_current');
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

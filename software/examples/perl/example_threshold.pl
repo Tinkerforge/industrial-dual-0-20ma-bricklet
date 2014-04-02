@@ -14,7 +14,8 @@ my $dual020 = Tinkerforge::BrickletIndustrialDual020mA->new(&UID, $ipcon); # Cre
 sub cb_reached
 {
     my ($sensor, $current) = @_;
-    print "\nCurrent (sensor ".$sensor.") is greather than 10mA: ".$current/(1000.0*1000.0)." mA\n";
+
+    print "Current (sensor $sensor) is greather than 10mA: ".$current/(1000.0*1000.0)." mA\n";
 }
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
@@ -29,7 +30,7 @@ $dual020->register_callback($dual020->CALLBACK_CURRENT_REACHED, 'cb_reached');
 # Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
 $dual020->set_current_callback_threshold(1, '>', 10*1000*1000, 0);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

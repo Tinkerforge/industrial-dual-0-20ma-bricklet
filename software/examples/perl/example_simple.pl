@@ -14,10 +14,10 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current current for sensor 1 (unit is nA)
-my $current = $dual020->get_current(1);
-print "\nCurrent: ".$current/(1000.0*1000.0)." mA\n";
+my $current = $dual020->get_current(1)/(1000.0*1000.0);
+print "Current: $current mA\n";
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
