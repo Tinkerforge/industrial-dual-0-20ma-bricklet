@@ -1,4 +1,4 @@
-function matlab_example_callback
+function matlab_example_callback()
     import com.tinkerforge.IPConnection;
     import com.tinkerforge.BrickletIndustrialDual020mA;
 
@@ -29,4 +29,3 @@ end
 function cb_reached(e)
     fprintf('Current [sensor %g]: %g mA\n', e.sensor, e.current/(1000*1000));
 end
-
