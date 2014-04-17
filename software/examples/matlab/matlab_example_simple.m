@@ -16,6 +16,6 @@ function matlab_example_simple
     current = dual020.getCurrent(1);
     fprintf('Current: %g mA', current/(1000*1000));
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end

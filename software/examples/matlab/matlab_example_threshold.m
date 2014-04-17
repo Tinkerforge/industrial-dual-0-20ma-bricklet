@@ -16,17 +16,17 @@ function matlab_example_callback
     dual020.setDebouncePeriod(10000);
 
     % Register threshold reached callback to function cb_reached
-    set(dual020, 'CurrentReachedCallback', @(h, e)cb_reached(e.sensor, e.current));
+    set(dual020, 'CurrentReachedCallback', @(h, e) cb_reached(e));
 
     % Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
     dual020.setCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
 
 % Callback for current greater than 10mA
-function cb_reached(sensor_value, current_value)
-    fprintf('Current [sensor %g] : %g mA\n', sensor_value, current_value/(1000*1000));
+function cb_reached(e)
+    fprintf('Current [sensor %g]: %g mA\n', e.sensor, e.current/(1000*1000));
 end
 

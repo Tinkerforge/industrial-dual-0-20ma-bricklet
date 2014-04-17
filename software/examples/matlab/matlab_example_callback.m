@@ -18,13 +18,13 @@ function matlab_example_callback
     dual020.setCurrentCallbackPeriod(1, 1000);
 
     % Register current callback to function cb_current
-    set(dual020, 'CurrentCallback', @(h, e)cb_current(e.sensor, e.current));
+    set(dual020, 'CurrentCallback', @(h, e) cb_current(e));
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
 
 % Callback function for current callback (parameter has unit nA)
-function cb_current(sensor_value, current_value)
-    fprintf('Current [sensor %g] : %g mA\n', sensor_value, current_value/(1000*1000));
+function cb_current(e)
+    fprintf('Current [sensor %g]: %g mA\n', e.sensor, e.current/(1000*1000));
 end

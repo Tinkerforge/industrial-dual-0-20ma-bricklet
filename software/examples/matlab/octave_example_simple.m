@@ -15,6 +15,6 @@ function octave_example_simple
     current = dual020.getCurrent(1);
     fprintf('Current: %g mA\n', current/(1000*1000));
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end

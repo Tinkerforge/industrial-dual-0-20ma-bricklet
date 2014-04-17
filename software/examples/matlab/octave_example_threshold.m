@@ -15,16 +15,16 @@ function octave_example_threshold
     dual020.setDebouncePeriod(10000);
 
     % Register threshold reached callback to function cb_reached
-    dual020.addCurrentReachedListener("cb_reached");
+    dual020.addCurrentReachedCallback(@cb_reached);
 
     % Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
     dual020.setCurrentCallbackThreshold(1, dual020.THRESHOLD_OPTION_GREATER, 10*1000*1000, 0);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback function for current callback (parameter has unit nA)
-function cb_reached(sensor_value, current_value)
-    fprintf('Current [sensor %s] : %g mA\n', sensor_value.toString(), current_value/(1000*1000));
+function cb_reached(e)
+    fprintf('Current [sensor %s]: %g mA\n', e.sensor.toString(), e.current/(1000*1000));
 end

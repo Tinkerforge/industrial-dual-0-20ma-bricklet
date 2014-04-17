@@ -17,13 +17,13 @@ function octave_example_callback
     dual020.setCurrentCallbackPeriod(1, 1000);
 
     % Register current callback to function cb_current
-    dual020.addCurrentListener("cb_current");
+    dual020.addCurrentCallback(@cb_current);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback function for current callback (parameter has unit nA)
-function cb_current(sensor_value, current_value)
-    fprintf("Current [sensor %s] : %g mA\n", sensor_value.toString(), current_value/(1000*1000));
+function cb_current(e)
+    fprintf("Current [sensor %s]: %g mA\n", e.sensor.toString(), e.current/(1000*1000));
 end
