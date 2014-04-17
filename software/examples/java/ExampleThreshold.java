@@ -19,7 +19,7 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		dual020.setDebouncePeriod(10000);
 
-		// Configure threshold (sensor 1) for "greater than 10mA" (unit is mA)
+		// Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
 		dual020.setCurrentCallbackThreshold((short)1, '>', 10*1000*1000, 0);
 
 		// Add and implement current reached listener (called if current is greater than 10mA)
