@@ -26,5 +26,5 @@ end
 
 % Callback function for current callback (parameter has unit nA)
 function cb_reached(e)
-    fprintf('Current [sensor %s]: %g mA\n', e.sensor.toString(), e.current/(1000*1000));
+    fprintf("Current [sensor %s]: %g mA\n", e.sensor.toString(), e.current/(1000*1000));
 end

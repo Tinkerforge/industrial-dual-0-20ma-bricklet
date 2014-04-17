@@ -13,7 +13,7 @@ function octave_example_simple()
 
     % Get current current for sensor 1 (unit is nA)
     current = dual020.getCurrent(1);
-    fprintf('Current: %g mA\n', current/(1000*1000));
+    fprintf("Current: %g mA\n", current/(1000*1000));
 
     input("Press any key to exit...\n", "s");
     ipcon.disconnect();
