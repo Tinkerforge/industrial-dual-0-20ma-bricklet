@@ -24,7 +24,7 @@ Module ExampleThreshold
         AddHandler industrial_dual_0_20ma.CurrentReached, AddressOf ReachedCB
 
         ' Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-        industrial_dual_0_20ma.SetCurrentCallbackThreshold(1, ">", 30*100, 0)
+        industrial_dual_0_20ma.SetCurrentCallbackThreshold(1, ">"C, 30*100, 0)
 
         System.Console.WriteLine("Press key to exit")
         System.Console.ReadKey()
