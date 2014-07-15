@@ -21,7 +21,7 @@ public class ExampleSimple {
 
 		System.out.println("Current (sensor 1): " + current/(1000.0*1000.0) + " mA");
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();
 	}
 }
