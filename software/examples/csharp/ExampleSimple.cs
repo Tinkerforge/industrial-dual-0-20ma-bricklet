@@ -20,8 +20,8 @@ class Example
 
 		System.Console.WriteLine("Current (sensor 1): " + current/(1000.0*1000.0) + " mA");
 
-		System.Console.WriteLine("Press key to exit");
-		System.Console.ReadKey();
+		System.Console.WriteLine("Press enter to exit");
+		System.Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

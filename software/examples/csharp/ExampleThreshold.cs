@@ -31,8 +31,8 @@ class Example
 		// Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
 		dual020.SetCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
 
-		System.Console.WriteLine("Press key to exit");
-		System.Console.ReadKey();
+		System.Console.WriteLine("Press enter to exit");
+		System.Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }
