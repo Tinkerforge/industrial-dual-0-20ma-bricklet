@@ -27,7 +27,7 @@ Module ExampleThreshold
         industrial_dual_0_20ma.SetCurrentCallbackThreshold(1, ">"C, 30*100, 0)
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

@@ -26,7 +26,7 @@ Module ExampleCallback
         AddHandler industrial_dual_0_20ma.Current, AddressOf CurrentCB
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

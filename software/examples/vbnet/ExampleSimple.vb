@@ -18,7 +18,7 @@ Module ExampleSimple
         System.Console.WriteLine("Current (sensor 1): " + (current/(1000.0*1000)).ToString() + " mA")
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
