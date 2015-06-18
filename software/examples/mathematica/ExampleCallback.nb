@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6503,        153]
-NotebookOptionsPosition[      6070,        132]
-NotebookOutlinePosition[      6408,        147]
-CellTagsIndexPosition[      6365,        144]
+NotebookDataLength[      6567,        154]
+NotebookOptionsPosition[      6140,        133]
+NotebookOutlinePosition[      6472,        148]
+CellTagsIndexPosition[      6429,        145]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -54,7 +54,7 @@ Cell[BoxData[{
      RowBox[{"sensor", " ", "1"}], ")"}], " ", "for", " ", "current", " ", 
     "callback", " ", "to", " ", "1", "s", " ", 
     RowBox[{"(", 
-     RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}], "\n", 
+     RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{"Note", ":", " ", 
     RowBox[{
@@ -65,11 +65,11 @@ Cell[BoxData[{
    RowBox[{
    "current", " ", "has", " ", "changed", " ", "since", " ", "the", " ", 
     "last", " ", 
-    RowBox[{"call", "!"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+    RowBox[{"call", "!"}]}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"dual020", "@", 
    RowBox[{"SetCurrentCallbackPeriod", "[", 
-    RowBox[{"1", ",", "1000"}], "]"}]}], "\n", "\[IndentingNewLine]", 
+    RowBox[{"1", ",", "1000"}], "]"}]}], "\[IndentingNewLine]", "\n", 
   RowBox[{"(*", " ", 
    RowBox[{
    "Callback", " ", "function", " ", "for", " ", "current", " ", "callback", 
@@ -82,8 +82,8 @@ Cell[BoxData[{
    RowBox[{"sender_", ",", "sensor_", ",", "current_"}], "]"}], ":=", 
   "\[IndentingNewLine]", 
   RowBox[{"Print", "[", 
-   RowBox[{"\"\<Current (sensor \\\"\>\"", "<>", 
-    RowBox[{"ToString", "[", "sensor", "]"}], "<>", "\"\<):\>\"", "<>", 
+   RowBox[{"\"\<Current (sensor \>\"", "<>", 
+    RowBox[{"ToString", "[", "sensor", "]"}], "<>", "\"\<): \>\"", "<>", 
     "\[IndentingNewLine]", "        ", 
     RowBox[{"ToString", "[", 
      RowBox[{"N", "[", 
@@ -128,11 +128,12 @@ Cell[BoxData[{
    3.600608760452553*^9}, {3.600608824736239*^9, 3.600608825481593*^9}, 
    3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
    3.6006966791387033`*^9, 3.600696687633937*^9}, {3.600697195361247*^9, 
-   3.600697263305517*^9}, {3.6006973002041607`*^9, 3.600697300518146*^9}}]
+   3.600697263305517*^9}, {3.6006973002041607`*^9, 3.600697300518146*^9}, {
+   3.64363015575198*^9, 3.6436301564432707`*^9}, 3.643630290559498*^9}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{334, Automatic}, {54, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{332, 65}, {52, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -147,7 +148,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 5011, 103, 583, "Input"]
+Cell[1055, 27, 5081, 104, 583, "Input"]
 }
 ]
 *)

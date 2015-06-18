@@ -17,7 +17,7 @@ dual020@SetCurrentCallbackPeriod[1,1000]
 
 (* Callback function for current callback (parameter has unit nA) *)
 CurrentCB[sender_,sensor_,current_]:=
- Print["Current (sensor \""<>ToString[sensor]<>"):"<>
+ Print["Current (sensor "<>ToString[sensor]<>"): "<>
        ToString[N[Quantity[current,"mA/1000"]]]]
 AddEventHandler[dual020@Current,CurrentCB]
 

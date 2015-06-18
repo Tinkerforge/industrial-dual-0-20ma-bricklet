@@ -15,8 +15,8 @@ dual020@SetDebouncePeriod[1000]
 
 (* Callback for current greater than 10mA *)
 CurrentReachedCB[sender_,sensor_,current_]:=
- Print["Current (sensor \""<>ToString[sensor]<>
-       ") is greater than 10mA:"<>ToString[N[Quantity[current,"mA/1000"]]]]
+ Print["Current (sensor "<>ToString[sensor]<>") is greater than 10mA: "<>
+       ToString[N[Quantity[current,"mA/1000"]]]]
 AddEventHandler[dual020@CurrentReached,CurrentReachedCB]
 
 (* Configure threshold (sensor 1) for "greater than 10mA" (unit is nA) *)

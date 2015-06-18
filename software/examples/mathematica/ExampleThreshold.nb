@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6732,        157]
-NotebookOptionsPosition[      6299,        136]
-NotebookOutlinePosition[      6637,        151]
-CellTagsIndexPosition[      6594,        148]
+NotebookDataLength[      6778,        159]
+NotebookOptionsPosition[      6350,        138]
+NotebookOutlinePosition[      6683,        153]
+CellTagsIndexPosition[      6640,        150]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -56,20 +56,21 @@ Cell[BoxData[{
      RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"dual020", "@", 
-   RowBox[{"SetDebouncePeriod", "[", "1000", "]"}]}], "\n", 
+   RowBox[{"SetDebouncePeriod", "[", "1000", "]"}]}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
    "Callback", " ", "for", " ", "current", " ", "greater", " ", "than", " ", 
-    "10", "mA"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+    "10", "mA"}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"CurrentReachedCB", "[", 
    RowBox[{"sender_", ",", "sensor_", ",", "current_"}], "]"}], ":=", 
   "\[IndentingNewLine]", 
   RowBox[{"Print", "[", 
-   RowBox[{"\"\<Current (sensor \\\"\>\"", "<>", 
-    RowBox[{"ToString", "[", "sensor", "]"}], "<>", "\[IndentingNewLine]", 
-    "        ", "\"\<) is greater than 10mA:\>\"", "<>", 
+   RowBox[{"\"\<Current (sensor \>\"", "<>", 
+    RowBox[{"ToString", "[", "sensor", "]"}], "<>", 
+    "\"\<) is greater than 10mA: \>\"", "<>", "\[IndentingNewLine]", 
+    "        ", 
     RowBox[{"ToString", "[", 
      RowBox[{"N", "[", 
       RowBox[{"Quantity", "[", 
@@ -132,11 +133,12 @@ Cell[BoxData[{
    3.600609340818445*^9, 3.600609544802136*^9}, {3.600609618298398*^9, 
    3.6006096224709063`*^9}, 3.600610394591187*^9, {3.600696674034113*^9, 
    3.60069670360082*^9}, {3.600696899462429*^9, 3.6006970689399548`*^9}, {
-   3.600697152672943*^9, 3.600697164045636*^9}}]
+   3.600697152672943*^9, 3.600697164045636*^9}, {3.643630222914757*^9, 
+   3.64363024265707*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{234, Automatic}, {77, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{233, 164}, {76, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -151,7 +153,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 5240, 107, 627, "Input"]
+Cell[1055, 27, 5291, 109, 627, "Input"]
 }
 ]
 *)
