@@ -6,13 +6,17 @@ Module ExampleThreshold
     Const UID As String = "XYZ" ' Change to your UID
 
     '  Callback for current greater than 10mA
-    Sub ReachedCB(ByVal sender As BrickletIndustrialDual020mA, ByVal sensor As Byte, ByVal current As Integer)
-        System.Console.WriteLine("Current (sensor " + sensor.ToString() + ") is greater than 10mA: " + (current/(1000.0*1000.0)).ToString() + "mA")
+    Sub ReachedCB(ByVal sender As BrickletIndustrialDual020mA, _
+                  ByVal sensor As Byte, ByVal current As Integer)
+        System.Console.WriteLine("Current (sensor " + sensor.ToString() + _
+                                 ") is greater than 10mA: " + _
+                                 (current/(1000.0*1000.0)).ToString() + "mA")
     End Sub
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim industrial_dual_0_20ma As New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
+        Dim industrial_dual_0_20ma As _
+          New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected

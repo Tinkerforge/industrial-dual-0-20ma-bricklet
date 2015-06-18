@@ -6,13 +6,16 @@ Module ExampleCallback
     Const UID As String = "XYZ" ' Change to your UID
 
     ' Callback function for current callback (parameter has unit nA)
-    Sub CurrentCB(ByVal sender As BrickletIndustrialDual020mA, ByVal sensor As Byte, ByVal current As Integer)
-        System.Console.WriteLine("Current (sensor" + sensor.ToString() + "): " + (current/(1000.0*1000.0)).ToString() + " mA")
+    Sub CurrentCB(ByVal sender As BrickletIndustrialDual020mA, _
+                  ByVal sensor As Byte, ByVal current As Integer)
+        System.Console.WriteLine("Current (sensor" + sensor.ToString() + "): " + _
+                                 (current/(1000.0*1000.0)).ToString() + " mA")
     End Sub
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim industrial_dual_0_20ma As New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
+        Dim industrial_dual_0_20ma As _
+          New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
