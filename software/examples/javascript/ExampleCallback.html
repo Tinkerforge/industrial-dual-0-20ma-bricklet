@@ -51,8 +51,7 @@
                 dual020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT,
                     // Callback function for current callback (parameter has unit nA)
                     function(sensor, current) {
-                        textArea.value += 'Current (sensor '+sensor+'): '+current/(1000*1000)+' mA';
-                        textArea.value += '\n';
+                        textArea.value += 'Current (sensor '+sensor+'): '+current/(1000*1000)+' mA\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

@@ -54,8 +54,7 @@
                     function(sensor, current) {
                         textArea.value += 'Current (sensor '+sensor+
                                           ') is greater than 10mA: '+
-                                          current/(1000*1000)+' mA';
-                        textArea.value += '\n';
+                                          current/(1000*1000)+' mA\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
