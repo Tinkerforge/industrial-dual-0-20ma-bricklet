@@ -1,6 +1,6 @@
 function octave_example_callback()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "ftn"; % Change to your UID
@@ -12,7 +12,7 @@ function octave_example_callback()
     % Don't use device before ipcon is connected
 
     % Set Period (sensor 1) for current callback to 1s (1000ms)
-    % Note: The callback is only called every second if the 
+    % Note: The callback is only called every second if the
     %       current has changed since the last call!
     dual020.setCurrentCallbackPeriod(1, 1000);
 
@@ -25,5 +25,13 @@ end
 
 % Callback function for current callback (parameter has unit nA)
 function cb_current(e)
-    fprintf("Current [sensor %s]: %g mA\n", e.sensor.toString(), e.current/(1000*1000));
+    fprintf("Current [sensor %d]: %g mA\n", short2int(e.sensor), e.current/(1000*1000));
+end
+
+function int = short2int(short)
+    if compare_versions(version(), "3.8", "<=")
+        int = short.intValue();
+    else
+        int = short;
+    end
 end

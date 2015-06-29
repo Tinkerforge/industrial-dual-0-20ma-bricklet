@@ -1,6 +1,6 @@
 function octave_example_threshold()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "ftn"; % Change to your UID
@@ -26,5 +26,13 @@ end
 
 % Callback function for current callback (parameter has unit nA)
 function cb_reached(e)
-    fprintf("Current [sensor %s]: %g mA\n", e.sensor.toString(), e.current/(1000*1000));
+    fprintf("Current [sensor %d]: %g mA\n", short2int(e.sensor), e.current/(1000*1000));
+end
+
+function int = short2int(short)
+    if compare_versions(version(), "3.8", "<=")
+        int = short.intValue();
+    else
+        int = short;
+    end
 end
