@@ -13,7 +13,7 @@ class Example
 		                         current/(1000.0*1000.0) + " mA");
 	}
 
-	static void Main() 
+	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletIndustrialDual020mA dual020 =

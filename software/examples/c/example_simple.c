@@ -26,13 +26,13 @@ int main() {
 	// Get current current from sensor 1 (unit is nA)
 	int32_t current;
 	if(industrial_dual_0_20ma_get_current(&dual020, 1, &current) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
+		fprintf(stderr, "Could not get current, probably timeout\n");
 		exit(1);
 	}
 
-	printf("Current: %f mA\n", current/(1000.0*1000.0));
+	printf("Current: %f mA\n", current/1000000.0);
 
 	printf("Press key to exit\n");
 	getchar();
-	ipcon_destroy(&ipcon);
+	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
 }

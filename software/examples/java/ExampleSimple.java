@@ -1,5 +1,5 @@
-import com.tinkerforge.BrickletIndustrialDual020mA;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletIndustrialDual020mA;
 
 public class ExampleSimple {
 	private static final String HOST = "localhost";
