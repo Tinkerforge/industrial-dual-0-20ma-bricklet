@@ -11,7 +11,7 @@
 void cb_current(uint8_t sensor, int32_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Current (sensor %d): %f mA\n", sensor, current/(1000.0*1000.0));
+	printf("Current (Sensor %d): %f mA\n", sensor, current/1000000.0);
 }
 
 int main() {
@@ -20,8 +20,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	IndustrialDual020mA dual020;
-	industrial_dual_0_20ma_create(&dual020, UID, &ipcon);
+	IndustrialDual020mA id020;
+	industrial_dual_0_20ma_create(&id020, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {

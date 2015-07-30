@@ -11,7 +11,7 @@ PORT = 4223
 UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
-dual020 = BrickletIndustrialDual020mA.new UID, ipcon # Create device object
+id020 = BrickletIndustrialDual020mA.new UID, ipcon # Create device object
 
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
@@ -19,11 +19,11 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Set Period (sensor 1) for current callback to 1s (1000ms)
 # Note: The callback is only called every second if the 
 #       current has changed since the last call!
-dual020.set_current_callback_period 1, 1000
+id020.set_current_callback_period 1, 1000
 
 # Register current callback (parameter has unit nA)
-dual020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, current|
-  puts "Current (sensor #{sensor}): #{current/(1000.0*1000.0)} mA"
+id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, current|
+  puts "Current (Sensor #{sensor}): #{current/1000000.0} mA"
 end
 
 puts 'Press key to exit'

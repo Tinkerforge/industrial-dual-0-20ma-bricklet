@@ -10,7 +10,7 @@ public class ExampleCallback {
 	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletIndustrialDual020mA dual020 =
+		BrickletIndustrialDual020mA id020 =
 		  new BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 		ipcon.connect(HOST, PORT); // Connect to brickd
@@ -19,13 +19,13 @@ public class ExampleCallback {
 		// Set Period (sensor 1) for current callback to 1s (1000ms)
 		// Note: The current callback is only called every second if the 
 		//       current has changed since the last call!
-		dual020.setCurrentCallbackPeriod((short)1, 1000);
+		id020.setCurrentCallbackPeriod((short)1, 1000);
 
 		// Add and implement current listener (called if current changes)
-		dual020.addCurrentListener(new BrickletIndustrialDual020mA.CurrentListener() {
+		id020.addCurrentListener(new BrickletIndustrialDual020mA.CurrentListener() {
 			public void current(short sensor, int current) {
-				System.out.println("Current (sensor " + sensor + "): " +
-				                   current/(1000.0*1000.0) + " mA");
+				System.out.println("Current (Sensor " + sensor + "): " +
+				                   current/1000000.0 + " mA");
 			}
 		});
 
