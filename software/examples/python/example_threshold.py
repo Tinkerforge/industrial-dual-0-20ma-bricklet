@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_industrial_dual_0_20ma import IndustrialDual020mA
+from tinkerforge.bricklet_industrial_dual_0_20ma import BrickletIndustrialDual020mA
 
 # Callback for current greater than 10mA
 def cb_reached(sensor, current):
@@ -14,7 +14,7 @@ def cb_reached(sensor, current):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    id020 = IndustrialDual020mA(UID, ipcon) # Create device object
+    id020 = BrickletIndustrialDual020mA(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
