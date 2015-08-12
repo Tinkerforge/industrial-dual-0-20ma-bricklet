@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-int main() {
+int main(void) {
 	// Create IP connection
 	IPConnection ipcon;
 	ipcon_create(&ipcon);
@@ -19,7 +19,7 @@ int main() {
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
 		fprintf(stderr, "Could not connect\n");
-		exit(1);
+		return 1;
 	}
 	// Don't use device before ipcon is connected
 
@@ -27,7 +27,7 @@ int main() {
 	int32_t current;
 	if(industrial_dual_0_20ma_get_current(&id020, 1, &current) < 0) {
 		fprintf(stderr, "Could not get current from sensor 1, probably timeout\n");
-		exit(1);
+		return 1;
 	}
 
 	printf("Current (Sensor 1): %f mA\n", current/1000000.0);
@@ -35,4 +35,5 @@ int main() {
 	printf("Press key to exit\n");
 	getchar();
 	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
+	return 0;
 }
