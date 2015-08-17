@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    dual020: TBrickletIndustrialDual020mA;
+    id020: TBrickletIndustrialDual020mA;
   public
     procedure Execute;
   end;
@@ -30,19 +30,19 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  dual020 := TBrickletIndustrialDual020mA.Create(UID, ipcon);
+  id020 := TBrickletIndustrialDual020mA.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Get current current from sensor 1 (unit is nA) }
-  current := dual020.GetCurrent(1);
-  WriteLn(Format('Current: %f mA', [current/(1000.0*1000.0)]));
+  current := id020.GetCurrent(1);
+  WriteLn(Format('Current (Sensor 1): %f mA', [current/1000000.0]));
 
   WriteLn('Press key to exit');
   ReadLn;
-  ipcon.Destroy;
+  ipcon.Destroy; { Calls ipcon.Disconnect internally }
 end;
 
 begin

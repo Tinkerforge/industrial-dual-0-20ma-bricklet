@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    dual020: TBrickletIndustrialDual020mA;
+    id020: TBrickletIndustrialDual020mA;
   public
     procedure ReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte; const current: longint);
     procedure Execute;
@@ -36,24 +36,24 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  dual020 := TBrickletIndustrialDual020mA.Create(UID, ipcon);
+  id020 := TBrickletIndustrialDual020mA.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
-  dual020.SetDebouncePeriod(10000);
+  id020.SetDebouncePeriod(10000);
 
   { Register threshold reached callback to procedure ReachedCB }
-  dual020.OnCurrentReached := {$ifdef FPC}@{$endif}ReachedCB;
+  id020.OnCurrentReached := {$ifdef FPC}@{$endif}ReachedCB;
 
   { Configure threshold (sensor 1) for "greater than 10mA" (unit is nA) }
-  dual020.SetCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
+  id020.SetCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
 
   WriteLn('Press key to exit');
   ReadLn;
-  ipcon.Destroy;
+  ipcon.Destroy; { Calls ipcon.Disconnect internally }
 end;
 
 begin
