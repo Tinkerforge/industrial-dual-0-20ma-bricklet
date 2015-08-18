@@ -33,10 +33,10 @@ int main(void) {
 	// Set Period for current callback for sensor 1 to 1s (1000ms)
 	// Note: The callback is only called every second if the 
 	//       current has changed since the last call!
-	industrial_dual_0_20ma_set_current_callback_period(&dual020, 1, 1000);
+	industrial_dual_0_20ma_set_current_callback_period(&id020, 1, 1000);
 
 	// Register current callback to function cb_current
-	industrial_dual_0_20ma_register_callback(&dual020,
+	industrial_dual_0_20ma_register_callback(&id020,
 	                                         INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT,
 	                                         (void *)cb_current,
 	                                         NULL);
