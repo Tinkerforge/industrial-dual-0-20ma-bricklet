@@ -14,8 +14,7 @@ Module ExampleCallback
 
     Sub Main()
         Dim ipcon As New IPConnection() ' Create IP connection
-        Dim industrial_dual_0_20ma As _
-          New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
+        Dim id020 As New BrickletIndustrialDual020mA(UID, ipcon) ' Create device object
 
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
@@ -23,10 +22,10 @@ Module ExampleCallback
         ' Set Period (sensor 1) for current callback to 1s (1000ms)
         ' Note: The current callback is only called every second if the 
         '       current has changed since the last call!
-        industrial_dual_0_20ma.SetCurrentCallbackPeriod(1, 1000)
+        id020.SetCurrentCallbackPeriod(1, 1000)
 
         ' Register current callback to function CurrentCB
-        AddHandler industrial_dual_0_20ma.Current, AddressOf CurrentCB
+        AddHandler id020.Current, AddressOf CurrentCB
 
         System.Console.WriteLine("Press key to exit")
         System.Console.ReadLine()
