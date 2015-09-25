@@ -12,7 +12,8 @@ type
     ipcon: TIPConnection;
     id020: TBrickletIndustrialDual020mA;
   public
-    procedure ReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte; const current: longint);
+    procedure CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
+                               const sensor: byte; const current: longint);
     procedure Execute;
   end;
 
@@ -24,10 +25,13 @@ const
 var
   e: TExample;
 
-{ Callback for current greater than 10mA }
-procedure TExample.ReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte; const current: longint);
+{ Callback procedure for current reached callback (parameter has unit nA) }
+procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
+                                    const sensor: byte; const current: longint);
 begin
-  WriteLn(Format('Current (sensor %d) is greater than 10mA: %f', [sensor, current/(1000.0*1000.0)]));
+  WriteLn(Format('Sensor: %d', [sensor]));
+  WriteLn(Format('Current: %f mA', [current/1000000.0]));
+  WriteLn('');
 end;
 
 procedure TExample.Execute;
@@ -45,11 +49,11 @@ begin
   { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
   id020.SetDebouncePeriod(10000);
 
-  { Register threshold reached callback to procedure ReachedCB }
-  id020.OnCurrentReached := {$ifdef FPC}@{$endif}ReachedCB;
+  { Register current reached callback to procedure CurrentReachedCB }
+  id020.OnCurrentReached := {$ifdef FPC}@{$endif}CurrentReachedCB;
 
-  { Configure threshold (sensor 1) for "greater than 10mA" (unit is nA) }
-  id020.SetCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
+  { Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA) }
+  id020.SetCurrentCallbackThreshold(1, '>', 10*1000000, 0);
 
   WriteLn('Press key to exit');
   ReadLn;

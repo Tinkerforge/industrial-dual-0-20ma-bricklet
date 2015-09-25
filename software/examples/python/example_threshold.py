@@ -8,9 +8,11 @@ UID = "XYZ" # Change to your UID
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_industrial_dual_0_20ma import BrickletIndustrialDual020mA
 
-# Callback for current greater than 10mA
-def cb_reached(sensor, current):
-    print('Current (Sensor' + str(sensor) + ') is greater than 10mA: ' + str(current/1000000.0))
+# Callback function for current reached callback (parameter has unit nA)
+def cb_current_reached(sensor, current):
+    print("Sensor: " + str(sensor))
+    print("Current: " + str(current/1000000.0) + " mA")
+    print("")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -22,11 +24,11 @@ if __name__ == "__main__":
     # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
     id020.set_debounce_period(10000)
 
-    # Register threshold reached callback to function cb_reached
-    id020.register_callback(dual020.CALLBACK_CURRENT_REACHED, cb_reached)
+    # Register current reached callback to function cb_current_reached
+    id020.register_callback(id020.CALLBACK_CURRENT_REACHED, cb_current_reached)
 
-    # Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-    id020.set_current_callback_threshold(1, '>', 10*1000000, 0)
+    # Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+    id020.set_current_callback_threshold(1, ">", 10*1000000, 0)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

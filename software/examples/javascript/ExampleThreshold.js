@@ -2,38 +2,41 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'ftn'; // Change to your UID
+var UID = 'XYZ'; // Change to your UID
 
 var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+var id020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
-    function(error) {
-        console.log('Error: '+error);
+    function (error) {
+        console.log('Error: ' + error);
     }
 ); // Connect to brickd
 // Don't use device before ipcon is connected
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-    function(connectReason) {
+    function (connectReason) {
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-        dual020.setDebouncePeriod(10000);
-        // Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-        dual020.setCurrentCallbackThreshold(1, '>', 10*1000*1000, 0);
+        id020.setDebouncePeriod(10000);
+
+        // Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+        id020.setCurrentCallbackThreshold(1, '>', 10*1000000, 0);
     }
 );
 
-// Register threshold reached callback
-dual020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
-    // Callback for current greater than 10mA
-    function(sensor, current) {
-        console.log('Current (sensor '+sensor+') is greater than 10mA: '+current/(1000*1000)+' mA');
+// Register current reached callback
+id020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
+    // Callback function for current reached callback (parameter has unit nA)
+    function (sensor, current) {
+        console.log('Sensor: ' + sensor);
+        console.log('Current: ' + current/1000000.0 + ' mA');
+        console.log();
     }
 );
 
-console.log("Press any key to exit ...");
+console.log('Press key to exit');
 process.stdin.on('data',
-    function(data) {
+    function (data) {
         ipcon.disconnect();
         process.exit(0);
     }

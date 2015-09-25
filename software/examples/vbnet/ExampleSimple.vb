@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleSimple
@@ -14,10 +15,10 @@ Module ExampleSimple
 
         ' Get current current from sensor 1 (unit is nA)
         Dim current As Integer = id020.GetCurrent(1)
-        System.Console.WriteLine("Current (Sensor 1): " + (current/1000000.0).ToString() + " mA")
+        Console.WriteLine("Current (Sensor 1): " + (current/1000000.0).ToString() + " mA")
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

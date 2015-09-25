@@ -7,28 +7,30 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change to your UID
 
-my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
-my $id020 = Tinkerforge::BrickletIndustrialDual020mA->new(&UID, $ipcon); # Create device object
-
-# Callback function for current callback (parameter has unit nA)
+# Callback subroutine for current callback (parameter has unit nA)
 sub cb_current
 {
     my ($sensor, $current) = @_;
 
-    print "Current (sensor $sensor): ".$current/(1000.0*1000.0)." mA\n";
+    print "Sensor: $sensor\n";
+    print "Current: " . $current/1000000.0 . " mA\n";
+    print "\n";
 }
+
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $id020 = Tinkerforge::BrickletIndustrialDual020mA->new(&UID, $ipcon); # Create device object
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Set Period (sensor 1) for current callback to 1s (1000ms)
-# Note: The callback is only called every second if the 
-#       current has changed since the last call!
-$id020->set_current_callback_period(1, 1000);
-
-# Register current callback to function cb_current
+# Register current callback to subroutine cb_current
 $id020->register_callback($id020->CALLBACK_CURRENT, 'cb_current');
 
-print "Press any key to exit...\n";
+# Set period for current (sensor 1) callback to 1s (1000ms)
+# Note: The current (sensor 1) callback is only called every second
+#       if the current (sensor 1) has changed since the last call!
+$id020->set_current_callback_period(1, 1000);
+
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

@@ -16,15 +16,17 @@ id020 = BrickletIndustrialDual020mA.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Set Period (sensor 1) for current callback to 1s (1000ms)
-# Note: The callback is only called every second if the 
-#       current has changed since the last call!
-id020.set_current_callback_period 1, 1000
-
 # Register current callback (parameter has unit nA)
 id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, current|
-  puts "Current (Sensor #{sensor}): #{current/1000000.0} mA"
+  puts "Sensor: #{sensor}"
+  puts "Current: #{current/1000000.0} mA"
+  puts ''
 end
+
+# Set period for current (sensor 1) callback to 1s (1000ms)
+# Note: The current (sensor 1) callback is only called every second
+#       if the current (sensor 1) has changed since the last call!
+id020.set_current_callback_period 1, 1000
 
 puts 'Press key to exit'
 $stdin.gets

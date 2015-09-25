@@ -3,29 +3,32 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
-dual020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
+id020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Get threshold callbacks with a debounce time of 1 second (1000ms) *)
-dual020@SetDebouncePeriod[1000]
+(*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
+id020@SetDebouncePeriod[10000]
 
-(* Callback for current greater than 10mA *)
+(*Callback function for current reached callback (parameter has unit nA)*)
 CurrentReachedCB[sender_,sensor_,current_]:=
- Print["Current (sensor "<>ToString[sensor]<>") is greater than 10mA: "<>
-       ToString[N[Quantity[current,"mA/1000"]]]]
-AddEventHandler[dual020@CurrentReached,CurrentReachedCB]
+ Module[{},
+  Print["Sensor: "<>ToString[sensor]];
+  Print["Current: "<>ToString[N[Quantity[current,"mA/1000000"]]]]
+ ]
 
-(* Configure threshold (sensor 1) for "greater than 10mA" (unit is nA) *)
+AddEventHandler[id020@CurrentReached,CurrentReachedCB]
+
+(*Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)*)
 option=Tinkerforge`BrickletIndustrialDual020mA`THRESHOLDUOPTIONUGREATER
-dual020@SetCurrentCallbackThreshold[1,option,10*1000*1000,0]
+id020@SetCurrentCallbackThreshold[1,option,10*1000000,0]
 
 Input["Click OK to exit"]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
-ReleaseNETObject[dual020]
+ReleaseNETObject[id020]
 ReleaseNETObject[ipcon]

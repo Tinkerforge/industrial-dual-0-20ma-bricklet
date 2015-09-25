@@ -2,37 +2,40 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'ftn'; // Change to your UID
+var UID = 'XYZ'; // Change to your UID
 
 var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+var id020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
-    function(error) {
-        console.log('Error: '+error);
+    function (error) {
+        console.log('Error: ' + error);
     }
 ); // Connect to brickd
 // Don't use device before ipcon is connected
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-    function(connectReason) {
-        // Set Period (sensor 1) for current callback to 1s (1000ms)
-        // Note: The callback is only called every second if the
-        // current has changed since the last call!
-        dual020.setCurrentCallbackPeriod(1, 1000);
-    }
-);
-// Register current callback
-dual020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT,
-    // Callback function for current callback (parameter has unit nA)
-    function(sensor, current) {
-        console.log('Current (sensor '+sensor+'): '+current/(1000*1000)+' mA');
+    function (connectReason) {
+        // Set period for current (sensor 1) callback to 1s (1000ms)
+        // Note: The current (sensor 1) callback is only called every second
+        //       if the current (sensor 1) has changed since the last call!
+        id020.setCurrentCallbackPeriod(1, 1000);
     }
 );
 
-console.log("Press any key to exit ...");
+// Register current callback
+id020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT,
+    // Callback function for current callback (parameter has unit nA)
+    function (sensor, current) {
+        console.log('Sensor: ' + sensor);
+        console.log('Current: ' + current/1000000.0 + ' mA');
+        console.log();
+    }
+);
+
+console.log('Press key to exit');
 process.stdin.on('data',
-    function(data) {
+    function (data) {
         ipcon.disconnect();
         process.exit(0);
     }

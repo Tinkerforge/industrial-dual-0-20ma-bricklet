@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -17,10 +18,10 @@ class Example
 
 		// Get current current from sensor 1 (unit is nA)
 		int current = id020.GetCurrent(1);
-		System.Console.WriteLine("Current (Sensor 1): " + current/1000000.0 + " mA");
+		Console.WriteLine("Current (Sensor 1): " + current/1000000.0 + " mA");
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

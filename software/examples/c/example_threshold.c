@@ -7,11 +7,13 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback for current greater than 10mA
-void cb_reached(uint8_t sensor, int32_t current, void *user_data) {
+// Callback function for current reached callback (parameter has unit nA)
+void cb_current_reached(uint8_t sensor, int32_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Current (Sensor %d) is greater than 10mA: %f\n", sensor, current/1000000.0);
+	printf("Sensor: %d\n", sensor);
+	printf("Current: %f mA\n", current/1000000.0);
+	printf("\n");
 }
 
 int main(void) {
@@ -33,13 +35,13 @@ int main(void) {
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	industrial_dual_0_20ma_set_debounce_period(&id020, 10000);
 
-	// Register threshold reached callback to function cb_reached
+	// Register current reached callback to function cb_current_reached
 	industrial_dual_0_20ma_register_callback(&id020,
-	                                          INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT_REACHED,
-	                                          (void *)cb_reached,
-	                                          NULL);
+	                                         INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT_REACHED,
+	                                         (void *)cb_current_reached,
+	                                         NULL);
 
-	// Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
+	// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
 	industrial_dual_0_20ma_set_current_callback_threshold(&id020, 1, '>', 10*1000000, 0);
 
 	printf("Press key to exit\n");

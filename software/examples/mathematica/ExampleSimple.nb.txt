@@ -3,17 +3,17 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
-dual020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
+id020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Get current current from sensor 1 (unit is nA) *)
-Print["Current (sensor 1): "<>ToString[N[Quantity[dual020@GetCurrent[1],"mA/1000"]]]]
+(*Get current current from sensor 1 (unit is nA)*)
+Print["Current (Sensor 1): "<>ToString[N[Quantity[id020@GetCurrent[1],"mA/1000000"]]]]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
-ReleaseNETObject[dual020]
+ReleaseNETObject[id020]
 ReleaseNETObject[ipcon]

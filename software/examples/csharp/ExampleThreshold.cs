@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -6,11 +7,12 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback for current greater than 10mA
-	static void ReachedCB(BrickletIndustrialDual020mA sender, byte sensor, int current)
+	// Callback function for current reached callback (parameter has unit nA)
+	static void CurrentReachedCB(BrickletIndustrialDual020mA sender, byte sensor, int current)
 	{
-		System.Console.WriteLine("Current (Sensor " + sensor + ") is greater than 10mA: " +
-		                         current/(1000000.0) + "mA");
+		Console.WriteLine("Sensor: " + sensor);
+		Console.WriteLine("Current: " + current/1000000.0 + " mA");
+		Console.WriteLine("");
 	}
 
 	static void Main()
@@ -22,17 +24,17 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-		id020.SetDebouncePeriod(1000);
+		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
+		id020.SetDebouncePeriod(10000);
 
-		// Register threshold reached callback to function ReachedCB
-		id020.CurrentReached += ReachedCB;
+		// Register current reached callback to function CurrentReachedCB
+		id020.CurrentReached += CurrentReachedCB;
 
-		// Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
+		// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
 		id020.SetCurrentCallbackThreshold(1, '>', 10*1000000, 0);
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

@@ -11,7 +11,9 @@
 void cb_current(uint8_t sensor, int32_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Current (Sensor %d): %f mA\n", sensor, current/1000000.0);
+	printf("Sensor: %d\n", sensor);
+	printf("Current: %f mA\n", current/1000000.0);
+	printf("\n");
 }
 
 int main(void) {
@@ -30,16 +32,16 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set Period for current callback for sensor 1 to 1s (1000ms)
-	// Note: The callback is only called every second if the 
-	//       current has changed since the last call!
-	industrial_dual_0_20ma_set_current_callback_period(&id020, 1, 1000);
-
 	// Register current callback to function cb_current
 	industrial_dual_0_20ma_register_callback(&id020,
 	                                         INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT,
 	                                         (void *)cb_current,
 	                                         NULL);
+
+	// Set period for current (sensor 1) callback to 1s (1000ms)
+	// Note: The current (sensor 1) callback is only called every second
+	//       if the current (sensor 1) has changed since the last call!
+	industrial_dual_0_20ma_set_current_callback_period(&id020, 1, 1000);
 
 	printf("Press key to exit\n");
 	getchar();

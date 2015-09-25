@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # Get current current from sensor 1 (unit is nA)
     current = id020.get_current(1)
-    print('Current (Sensor 1): ' + str(current/1000000.0) + ' mA')
+    print("Current (Sensor 1): " + str(current/1000000.0) + " mA")
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

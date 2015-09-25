@@ -31,23 +31,23 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var dual020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
+                var id020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
-                        // Get current current for sensor 1 (unit is nA)
-                        dual020.getCurrent(1,
-                            function(current) {
-                                ctextArea.value += 'Current: '+current/(1000*1000)+' mA\n';
+                    function (connectReason) {
+                        // Get current current from sensor 1 (unit is nA)
+                        id020.getCurrent(1,
+                            function (current) {
+                                textArea.value += 'Current (Sensor 1): ' + current/1000000.0 + ' mA\n';
                             },
-                            function(error) {
-                                textArea.value += 'Error: '+error+'\n';
+                            function (error) {
+                                textArea.value += 'Error: ' + error + '\n';
                             }
                         );
                     }

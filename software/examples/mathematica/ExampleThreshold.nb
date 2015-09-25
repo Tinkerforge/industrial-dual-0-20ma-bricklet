@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6778,        159]
-NotebookOptionsPosition[      6350,        138]
-NotebookOutlinePosition[      6683,        153]
-CellTagsIndexPosition[      6640,        150]
+NotebookDataLength[      7020,        170]
+NotebookOptionsPosition[      6592,        149]
+NotebookOutlinePosition[      6925,        164]
+CellTagsIndexPosition[      6882,        161]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,86 +26,96 @@ Cell[BoxData[{
    3.600685369797085*^9}],
 
 Cell[BoxData[{
- RowBox[{"host", "=", "\"\<localhost\>\""}], "\[IndentingNewLine]", 
- RowBox[{"port", "=", "4223"}], "\[IndentingNewLine]", 
+ RowBox[{"host", "=", "\"\<localhost\>\""}], "\n", 
+ RowBox[{"port", "=", "4223"}], "\n", 
  RowBox[{
-  RowBox[{"uid", "=", "\"\<amb\>\""}], 
-  RowBox[{"(*", " ", 
-   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], " ", "*)"}], 
+  RowBox[{"uid", "=", "\"\<XYZ\>\""}], 
+  RowBox[{"(*", 
+   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], "*)"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
    "Create", " ", "IPConnection", " ", "and", " ", "device", " ", "object"}], 
-   " ", "*)"}]}], "\[IndentingNewLine]", 
+   "*)"}]}], "\n", 
  RowBox[{"ipcon", "=", 
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
- RowBox[{"dual020", "=", 
+ RowBox[{"id020", "=", 
   RowBox[{"NETNew", "[", 
    RowBox[{
    "\"\<Tinkerforge.BrickletIndustrialDual020mA\>\"", ",", "uid", ",", 
-    "ipcon"}], "]"}]}], "\[IndentingNewLine]", 
+    "ipcon"}], "]"}]}], "\n", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
-    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\n", 
-  RowBox[{"(*", " ", 
+    RowBox[{"host", ",", "port"}], "]"}]}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
    "Get", " ", "threshold", " ", "callbacks", " ", "with", " ", "a", " ", 
-    "debounce", " ", "time", " ", "of", " ", "1", " ", "second", " ", 
+    "debounce", " ", "time", " ", "of", " ", "10", " ", "seconds", " ", 
     RowBox[{"(", 
-     RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}]}], "\n", 
+     RowBox[{"10000", "ms"}], ")"}]}], "*)"}]}], "\n", 
  RowBox[{
-  RowBox[{"dual020", "@", 
-   RowBox[{"SetDebouncePeriod", "[", "1000", "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{"id020", "@", 
+   RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
-   "Callback", " ", "for", " ", "current", " ", "greater", " ", "than", " ", 
-    "10", "mA"}], " ", "*)"}]}], "\n", 
+   "Callback", " ", "function", " ", "for", " ", "current", " ", "reached", 
+    " ", "callback", " ", 
+    RowBox[{"(", 
+     RowBox[{"parameter", " ", "has", " ", "unit", " ", "nA"}], ")"}]}], 
+   "*)"}]}], "\n", 
  RowBox[{
-  RowBox[{"CurrentReachedCB", "[", 
-   RowBox[{"sender_", ",", "sensor_", ",", "current_"}], "]"}], ":=", 
-  "\[IndentingNewLine]", 
-  RowBox[{"Print", "[", 
-   RowBox[{"\"\<Current (sensor \>\"", "<>", 
-    RowBox[{"ToString", "[", "sensor", "]"}], "<>", 
-    "\"\<) is greater than 10mA: \>\"", "<>", "\[IndentingNewLine]", 
-    "        ", 
-    RowBox[{"ToString", "[", 
-     RowBox[{"N", "[", 
-      RowBox[{"Quantity", "[", 
-       RowBox[{"current", ",", "\"\<mA/1000\>\""}], "]"}], "]"}], "]"}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"CurrentReachedCB", "[", 
+    RowBox[{"sender_", ",", "sensor_", ",", "current_"}], "]"}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Sensor: \>\"", "<>", 
+        RowBox[{"ToString", "[", "sensor", "]"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<Current: \>\"", "<>", 
+        RowBox[{"ToString", "[", 
+         RowBox[{"N", "[", 
+          RowBox[{"Quantity", "[", 
+           RowBox[{"current", ",", "\"\<mA/1000000\>\""}], "]"}], "]"}], 
+         "]"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
-    RowBox[{"dual020", "@", "CurrentReached"}], ",", "CurrentReachedCB"}], 
+    RowBox[{"id020", "@", "CurrentReached"}], ",", "CurrentReachedCB"}], 
    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Configure", " ", "threshold", " ", 
+  RowBox[{"(*", 
+   RowBox[{"Configure", " ", "threshold", " ", "for", " ", "current", " ", 
     RowBox[{"(", 
-     RowBox[{"sensor", " ", "1"}], ")"}], " ", "for", " ", 
-    "\"\<greater than 10mA\>\"", " ", 
+     RowBox[{"sensor", " ", "1"}], ")"}], " ", "\"\<greater than 10 mA\>\"", 
+    " ", 
     RowBox[{"(", 
-     RowBox[{"unit", " ", "is", " ", "nA"}], ")"}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
+     RowBox[{"unit", " ", "is", " ", "nA"}], ")"}]}], "*)"}]}], "\n", 
  RowBox[{"option", "=", 
   "Tinkerforge`BrickletIndustrialDual020mA`THRESHOLDUOPTIONUGREATER"}], "\n", 
 
  RowBox[{
-  RowBox[{"dual020", "@", 
+  RowBox[{"id020", "@", 
    RowBox[{"SetCurrentCallbackThreshold", "[", 
     RowBox[{"1", ",", "option", ",", 
-     RowBox[{"10", "*", "1000", "*", "1000"}], ",", "0"}], "]"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+     RowBox[{"10", "*", "1000000"}], ",", "0"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Clean", " ", "up"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Clean", " ", "up"}], "*)"}]}], "\n", 
  RowBox[{"ipcon", "@", 
-  RowBox[{"Disconnect", "[", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"ReleaseNETObject", "[", "dual020", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"Disconnect", "[", "]"}]}], "\n", 
+ RowBox[{"ReleaseNETObject", "[", "id020", "]"}], "\n", 
  RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]}], "Input",
  CellChangeTimes->{{3.600075175574196*^9, 3.600075177574486*^9}, {
    3.600075518821967*^9, 3.60007554243471*^9}, {3.600075580562348*^9, 
@@ -134,10 +144,11 @@ Cell[BoxData[{
    3.6006096224709063`*^9}, 3.600610394591187*^9, {3.600696674034113*^9, 
    3.60069670360082*^9}, {3.600696899462429*^9, 3.6006970689399548`*^9}, {
    3.600697152672943*^9, 3.600697164045636*^9}, {3.643630222914757*^9, 
-   3.64363024265707*^9}}]
+   3.64363024265707*^9}, {3.6521637944374523`*^9, 3.652163802397553*^9}, {
+   3.6539716786939583`*^9, 3.65397168264557*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{233, 164}, {76, Automatic}},
+WindowMargins->{{231, 166}, {74, Automatic}},
 FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
@@ -153,7 +164,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 5291, 109, 627, "Input"]
+Cell[1055, 27, 5533, 120, 693, "Input"]
 }
 ]
 *)

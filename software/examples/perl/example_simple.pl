@@ -17,6 +17,6 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 my $current = $id020->get_current(1);
 print "Current (Sensor 1): " . $current/1000000.0 . " mA\n";
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

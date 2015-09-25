@@ -6,8 +6,8 @@ public class ExampleThreshold {
 	private static final int PORT = 4223;
 	private static final String UID = "XYZ"; // Change to your UID
 
-	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
-	//       might normally want to catch are described in the documentation
+	// Note: To make the example code cleaner we do not handle exceptions. Exceptions
+	//       you might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletIndustrialDual020mA id020 =
@@ -19,16 +19,17 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		id020.setDebouncePeriod(10000);
 
-		// Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-		id020.setCurrentCallbackThreshold((short)1, '>', 10*1000000, 0);
-
-		// Add and implement current reached listener (called if current is greater than 10mA)
+		// Add current reached listener (parameter has unit nA)
 		id020.addCurrentReachedListener(new BrickletIndustrialDual020mA.CurrentReachedListener() {
 			public void currentReached(short sensor, int current) {
-				System.out.println("Current (Sensor " + sensor + ") is greater than 10mA: " +
-				                   current/1000000.0);
+				System.out.println("Sensor: " + sensor);
+				System.out.println("Current: " + current/1000000.0 + " mA");
+				System.out.println("");
 			}
 		});
+
+		// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+		id020.setCurrentCallbackThreshold((short)1, '>', 10*1000000, 0);
 
 		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();

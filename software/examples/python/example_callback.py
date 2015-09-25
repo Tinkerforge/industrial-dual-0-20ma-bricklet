@@ -10,7 +10,9 @@ from tinkerforge.bricklet_industrial_dual_0_20ma import BrickletIndustrialDual02
 
 # Callback function for current callback (parameter has unit nA)
 def cb_current(sensor, current):
-    print('Current (Sensor ' + str(sensor) + '): ' + str(current/1000000.0) + ' mA')
+    print("Sensor: " + str(sensor))
+    print("Current: " + str(current/1000000.0) + " mA")
+    print("")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -19,13 +21,13 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Set Period (sensor 1) for current callback to 1s (1000ms)
-    # Note: The callback is only called every second if the 
-    #       current has changed since the last call!
+    # Register current callback to function cb_current
+    id020.register_callback(id020.CALLBACK_CURRENT, cb_current)
+
+    # Set period for current (sensor 1) callback to 1s (1000ms)
+    # Note: The current (sensor 1) callback is only called every second
+    #       if the current (sensor 1) has changed since the last call!
     id020.set_current_callback_period(1, 1000)
 
-    # Register current callback to function cb_current
-    id020.register_callback(dual020.CALLBACK_CURRENT, cb_current)
-
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

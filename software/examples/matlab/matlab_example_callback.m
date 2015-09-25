@@ -4,27 +4,29 @@ function matlab_example_callback()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'ftn'; % Change to your UID
-    
+    UID = 'XYZ'; % Change to your UID
+
     ipcon = IPConnection(); % Create IP connection
-    dual020 = BrickletIndustrialDual020mA(UID, ipcon); % Create device object
+    id020 = BrickletIndustrialDual020mA(UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Set Period (sensor 1) for current callback to 1s (1000ms)
-    % Note: The callback is only called every second if the 
-    %       current has changed since the last call!
-    dual020.setCurrentCallbackPeriod(1, 1000);
-
     % Register current callback to function cb_current
-    set(dual020, 'CurrentCallback', @(h, e) cb_current(e));
+    set(id020, 'CurrentCallback', @(h, e) cb_current(e));
 
-    input('Press any key to exit...\n', 's');
+    % Set period for current (sensor 1) callback to 1s (1000ms)
+    % Note: The current (sensor 1) callback is only called every second
+    %       if the current (sensor 1) has changed since the last call!
+    id020.setCurrentCallbackPeriod(1, 1000);
+
+    input('Press key to exit\n', 's');
     ipcon.disconnect();
 end
 
 % Callback function for current callback (parameter has unit nA)
 function cb_current(e)
-    fprintf('Current [sensor %g]: %g mA\n', e.sensor, e.current/(1000*1000));
+    fprintf('Sensor: %i\n', e.sensor);
+    fprintf('Current: %g mA\n', e.current/1000000.0);
+    fprintf('\n');
 end

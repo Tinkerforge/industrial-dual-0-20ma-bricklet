@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleThreshold
@@ -5,12 +6,11 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    '  Callback for current greater than 10mA
-    Sub ReachedCB(ByVal sender As BrickletIndustrialDual020mA, _
-                  ByVal sensor As Byte, ByVal current As Integer)
-        System.Console.WriteLine("Current (sensor " + sensor.ToString() + _
-                                 ") is greater than 10mA: " + _
-                                 (current/(1000.0*1000.0)).ToString() + "mA")
+    ' Callback subroutine for current reached callback (parameter has unit nA)
+    Sub CurrentReachedCB(ByVal sender As BrickletIndustrialDual020mA, ByVal sensor As Byte, ByVal current As Integer)
+        Console.WriteLine("Sensor: " + sensor.ToString())
+        Console.WriteLine("Current: " + (current/1000000.0).ToString() + " mA")
+        Console.WriteLine("")
     End Sub
 
     Sub Main()
@@ -20,17 +20,17 @@ Module ExampleThreshold
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
-        ' Get threshold callbacks with a debounce time of 1 seconds (1000ms)
-        id020.SetDebouncePeriod(1000)
+        ' Get threshold callbacks with a debounce time of 10 seconds (10000ms)
+        id020.SetDebouncePeriod(10000)
 
-        ' Register threshold reached callback to function ReachedCB
-        AddHandler id020.CurrentReached, AddressOf ReachedCB
+        ' Register current reached callback to subroutine CurrentReachedCB
+        AddHandler id020.CurrentReached, AddressOf CurrentReachedCB
 
-        ' Configure threshold (sensor 1) for "greater than 10mA" (unit is nA)
-        id020.SetCurrentCallbackThreshold(1, ">"C, 10*1000*1000, 0)
+        ' Configure threshold for current "greater than 10 mA" (unit is nA)
+        id020.SetCurrentCallbackThreshold(1, ">"C, 10*1000000, 0)
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

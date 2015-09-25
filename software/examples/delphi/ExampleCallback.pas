@@ -12,7 +12,8 @@ type
     ipcon: TIPConnection;
     id020: TBrickletIndustrialDual020mA;
   public
-    procedure CurrentCB(sender: TBrickletIndustrialDual020mA; const sensor: byte; const current: longint);
+    procedure CurrentCB(sender: TBrickletIndustrialDual020mA;
+                        const sensor: byte; const current: longint);
     procedure Execute;
   end;
 
@@ -24,11 +25,13 @@ const
 var
   e: TExample;
 
-{ Callback function for current callback (parameter has unit nA) }
+{ Callback procedure for current callback (parameter has unit nA) }
 procedure TExample.CurrentCB(sender: TBrickletIndustrialDual020mA;
                              const sensor: byte; const current: longint);
 begin
-  WriteLn(Format('Current (sensor %d): %f mA', [sensor, current/(1000.0*1000.0)]));
+  WriteLn(Format('Sensor: %d', [sensor]));
+  WriteLn(Format('Current: %f mA', [current/1000000.0]));
+  WriteLn('');
 end;
 
 procedure TExample.Execute;
@@ -43,13 +46,13 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Set Period (sensor 1) for current callback to 1s (1000ms)
-    Note: The current callback is only called every second if the
-          current has changed since the last call! }
-  id020.SetCurrentCallbackPeriod(1, 1000);
-
   { Register current callback to procedure CurrentCB }
   id020.OnCurrent := {$ifdef FPC}@{$endif}CurrentCB;
+
+  { Set period for current (sensor 1) callback to 1s (1000ms)
+    Note: The current (sensor 1) callback is only called every second
+          if the current (sensor 1) has changed since the last call! }
+  id020.SetCurrentCallbackPeriod(1, 1000);
 
   WriteLn('Press key to exit');
   ReadLn;
