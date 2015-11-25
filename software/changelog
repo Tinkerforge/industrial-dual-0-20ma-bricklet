@@ -1,6 +1,6 @@
-2.0.0:
+2013-07-04: 2.0.0 (b591a04)
 - Initial version
 
-2.0.1:
+2013-12-19: 2.0.1 (7ff48fb)
 - Fix wrong length for GetDebounce packet (through brickletlib)
 - Add select for MCP2422
