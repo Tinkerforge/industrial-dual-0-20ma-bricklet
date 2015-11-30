@@ -7,7 +7,8 @@ Module ExampleCallback
     Const UID As String = "XYZ" ' Change to your UID
 
     ' Callback subroutine for current callback (parameter has unit nA)
-    Sub CurrentCB(ByVal sender As BrickletIndustrialDual020mA, ByVal sensor As Byte, ByVal current As Integer)
+    Sub CurrentCB(ByVal sender As BrickletIndustrialDual020mA, _
+                  ByVal sensor As Byte, ByVal current As Integer)
         Console.WriteLine("Sensor: " + sensor.ToString())
         Console.WriteLine("Current: " + (current/1000000.0).ToString() + " mA")
         Console.WriteLine("")
