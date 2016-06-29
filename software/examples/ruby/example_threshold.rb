@@ -20,7 +20,8 @@ ipcon.connect HOST, PORT # Connect to brickd
 id020.set_debounce_period 10000
 
 # Register current reached callback (parameter has unit nA)
-id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED) do |sensor, current|
+id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED) do |sensor, \
+                                                                                   current|
   puts "Sensor: #{sensor}"
   puts "Current: #{current/1000000.0} mA"
   puts ''

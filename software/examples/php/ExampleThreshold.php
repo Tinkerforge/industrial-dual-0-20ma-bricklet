@@ -28,7 +28,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 $id020->setDebouncePeriod(10000);
 
 // Register current reached callback to function cb_currentReached
-$id020->registerCallback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED, 'cb_currentReached');
+$id020->registerCallback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED,
+                         'cb_currentReached');
 
 // Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
 $id020->setCurrentCallbackThreshold(1, '>', 10*1000000, 0);
