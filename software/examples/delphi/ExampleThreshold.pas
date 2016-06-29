@@ -12,8 +12,8 @@ type
     ipcon: TIPConnection;
     id020: TBrickletIndustrialDual020mA;
   public
-    procedure CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
-                               const sensor: byte; const current: longint);
+    procedure CurrentReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte;
+                               const current: longint);
     procedure Execute;
   end;
 
@@ -26,8 +26,8 @@ var
   e: TExample;
 
 { Callback procedure for current reached callback (parameter has unit nA) }
-procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
-                                    const sensor: byte; const current: longint);
+procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte;
+                                    const current: longint);
 begin
   WriteLn(Format('Sensor: %d', [sensor]));
   WriteLn(Format('Current: %f mA', [current/1000000.0]));
