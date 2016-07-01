@@ -8,7 +8,7 @@ use Tinkerforge\BrickletIndustrialDual020mA;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 // Callback function for current reached callback (parameter has unit nA)
 function cb_currentReached($sensor, $current)

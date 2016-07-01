@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 // Callback function for current reached callback (parameter has unit nA)
 void cb_current_reached(uint8_t sensor, int32_t current, void *user_data) {

@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = 'XYZ' # Change to your UID
+UID = 'XYZ' # Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 ipcon = IPConnection.new # Create IP connection
 id020 = BrickletIndustrialDual020mA.new UID, ipcon # Create device object

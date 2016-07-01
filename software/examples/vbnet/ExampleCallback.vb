@@ -4,7 +4,7 @@ Imports Tinkerforge
 Module ExampleCallback
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
     ' Callback subroutine for current callback (parameter has unit nA)
     Sub CurrentCB(ByVal sender As BrickletIndustrialDual020mA, ByVal sensor As Byte, _

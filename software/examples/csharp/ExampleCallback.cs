@@ -5,7 +5,7 @@ class Example
 {
 	private static string HOST = "localhost";
 	private static int PORT = 4223;
-	private static string UID = "XYZ"; // Change to your UID
+	private static string UID = "XYZ"; // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 	// Callback function for current callback (parameter has unit nA)
 	static void CurrentCB(BrickletIndustrialDual020mA sender, byte sensor, int current)

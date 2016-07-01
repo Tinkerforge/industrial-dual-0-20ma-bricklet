@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = 'XYZ' # Change to your UID
+UID = 'XYZ' # Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 ipcon = IPConnection.new # Create IP connection
 id020 = BrickletIndustrialDual020mA.new UID, ipcon # Create device object
@@ -17,7 +17,8 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Register current callback (parameter has unit nA)
-id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, current|
+id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, \
+                                                                           current|
   puts "Sensor: #{sensor}"
   puts "Current: #{current/1000000.0} mA"
   puts ''

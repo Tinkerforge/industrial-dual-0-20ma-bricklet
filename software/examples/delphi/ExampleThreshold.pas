@@ -20,14 +20,14 @@ type
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = 'XYZ'; { Change to your UID }
+  UID = 'XYZ'; { Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet }
 
 var
   e: TExample;
 
 { Callback procedure for current reached callback (parameter has unit nA) }
-procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA; const sensor: byte;
-                                    const current: longint);
+procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
+                                    const sensor: byte; const current: longint);
 begin
   WriteLn(Format('Sensor: %d', [sensor]));
   WriteLn(Format('Current: %f mA', [current/1000000.0]));

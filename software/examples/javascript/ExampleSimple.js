@@ -2,7 +2,7 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'XYZ'; // Change to your UID
+var UID = 'XYZ'; // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
 var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
 var id020 = new Tinkerforge.BrickletIndustrialDual020mA(UID, ipcon); // Create device object
