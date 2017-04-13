@@ -29,7 +29,7 @@ class Example
 		id020.SetDebouncePeriod(10000);
 
 		// Register current reached callback to function CurrentReachedCB
-		id020.CurrentReached += CurrentReachedCB;
+		id020.CurrentReachedCallback += CurrentReachedCB;
 
 		// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
 		id020.SetCurrentCallbackThreshold(1, '>', 10*1000000, 0);

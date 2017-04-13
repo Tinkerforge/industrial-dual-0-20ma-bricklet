@@ -25,7 +25,7 @@ class Example
 		// Don't use device before ipcon is connected
 
 		// Register current callback to function CurrentCB
-		id020.Current += CurrentCB;
+		id020.CurrentCallback += CurrentCB;
 
 		// Set period for current (sensor 1) callback to 1s (1000ms)
 		// Note: The current (sensor 1) callback is only called every second
