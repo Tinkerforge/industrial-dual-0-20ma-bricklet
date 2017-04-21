@@ -10,7 +10,7 @@ tinkerforge call industrial-dual-0-20ma-bricklet $uid set-debounce-period 10000
 tinkerforge dispatch industrial-dual-0-20ma-bricklet $uid current-reached &
 
 # Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
-tinkerforge call industrial-dual-0-20ma-bricklet $uid set-current-callback-threshold 1 greater 10000000 0
+tinkerforge call industrial-dual-0-20ma-bricklet $uid set-current-callback-threshold 1 threshold-option-greater 10000000 0
 
 echo "Press key to exit"; read dummy
 
