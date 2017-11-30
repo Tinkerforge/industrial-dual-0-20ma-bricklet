@@ -17,7 +17,7 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Register current callback (parameter has unit nA)
-id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor, \
+id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT) do |sensor,
                                                                            current|
   puts "Sensor: #{sensor}"
   puts "Current: #{current/1000000.0} mA"

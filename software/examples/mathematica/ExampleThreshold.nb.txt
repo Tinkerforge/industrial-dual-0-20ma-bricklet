@@ -20,7 +20,7 @@ CurrentReachedCB[sender_,sensor_,current_]:=
   Print["Current: "<>ToString[N[Quantity[current,"mA/1000000"]]]]
  ]
 
-AddEventHandler[id020@CurrentReached,CurrentReachedCB]
+AddEventHandler[id020@CurrentReachedCallback,CurrentReachedCB]
 
 (*Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)*)
 option=Tinkerforge`BrickletIndustrialDual020mA`THRESHOLDUOPTIONUGREATER

@@ -25,7 +25,7 @@ Module ExampleThreshold
         id020.SetDebouncePeriod(10000)
 
         ' Register current reached callback to subroutine CurrentReachedCB
-        AddHandler id020.CurrentReached, AddressOf CurrentReachedCB
+        AddHandler id020.CurrentReachedCallback, AddressOf CurrentReachedCB
 
         ' Configure threshold for current "greater than 10 mA" (unit is nA)
         id020.SetCurrentCallbackThreshold(1, ">"C, 10*1000000, 0)

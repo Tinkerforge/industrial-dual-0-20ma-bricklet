@@ -17,7 +17,7 @@ CurrentCB[sender_,sensor_,current_]:=
   Print["Current: "<>ToString[N[Quantity[current,"mA/1000000"]]]]
  ]
 
-AddEventHandler[id020@Current,CurrentCB]
+AddEventHandler[id020@CurrentCallback,CurrentCB]
 
 (*Set period for current (sensor 1) callback to 1s (1000ms)*)
 (*Note: The current (sensor 1) callback is only called every second*)
