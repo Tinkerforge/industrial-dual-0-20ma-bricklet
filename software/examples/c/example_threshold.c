@@ -11,7 +11,7 @@
 void cb_current_reached(uint8_t sensor, int32_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Sensor: %d\n", sensor);
+	printf("Sensor: %u\n", sensor);
 	printf("Current: %f mA\n", current/1000000.0);
 	printf("\n");
 }
