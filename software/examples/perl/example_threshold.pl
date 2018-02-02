@@ -7,7 +7,7 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
-# Callback subroutine for current reached callback (parameter has unit nA)
+# Callback subroutine for current reached callback
 sub cb_current_reached
 {
     my ($sensor, $current) = @_;
@@ -29,7 +29,7 @@ $id020->set_debounce_period(10000);
 # Register current reached callback to subroutine cb_current_reached
 $id020->register_callback($id020->CALLBACK_CURRENT_REACHED, 'cb_current_reached');
 
-# Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+# Configure threshold for current (sensor 1) "greater than 10 mA"
 $id020->set_current_callback_threshold(1, '>', 10*1000000, 0);
 
 print "Press key to exit\n";

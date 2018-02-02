@@ -21,7 +21,7 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		id020.setDebouncePeriod(10000);
 
-		// Add current reached listener (parameter has unit nA)
+		// Add current reached listener
 		id020.addCurrentReachedListener(new BrickletIndustrialDual020mA.CurrentReachedListener() {
 			public void currentReached(short sensor, int current) {
 				System.out.println("Sensor: " + sensor);
@@ -30,7 +30,7 @@ public class ExampleThreshold {
 			}
 		});
 
-		// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+		// Configure threshold for current (sensor 1) "greater than 10 mA"
 		id020.setCurrentCallbackThreshold((short)1, '>', 10*1000000, 0);
 
 		System.out.println("Press key to exit"); System.in.read();

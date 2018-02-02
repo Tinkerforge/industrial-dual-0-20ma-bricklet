@@ -6,7 +6,7 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
-    ' Callback subroutine for current reached callback (parameter has unit nA)
+    ' Callback subroutine for current reached callback
     Sub CurrentReachedCB(ByVal sender As BrickletIndustrialDual020mA, _
                          ByVal sensor As Byte, ByVal current As Integer)
         Console.WriteLine("Sensor: " + sensor.ToString())
@@ -27,7 +27,7 @@ Module ExampleThreshold
         ' Register current reached callback to subroutine CurrentReachedCB
         AddHandler id020.CurrentReachedCallback, AddressOf CurrentReachedCB
 
-        ' Configure threshold for current "greater than 10 mA" (unit is nA)
+        ' Configure threshold for current "greater than 10 mA"
         id020.SetCurrentCallbackThreshold(1, ">"C, 10*1000000, 0)
 
         Console.WriteLine("Press key to exit")

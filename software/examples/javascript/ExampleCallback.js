@@ -25,7 +25,7 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
 
 // Register current callback
 id020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT,
-    // Callback function for current callback (parameter has unit nA)
+    // Callback function for current callback
     function (sensor, current) {
         console.log('Sensor: ' + sensor);
         console.log('Current: ' + current/1000000.0 + ' mA');

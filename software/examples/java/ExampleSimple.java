@@ -18,7 +18,7 @@ public class ExampleSimple {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current current from sensor 1 (unit is nA)
+		// Get current current from sensor 1
 		int current = id020.getCurrent((short)1); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("Current (Sensor 1): " + current/1000000.0 + " mA");
 

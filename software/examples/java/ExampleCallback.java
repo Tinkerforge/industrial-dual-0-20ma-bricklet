@@ -18,7 +18,7 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Add current listener (parameter has unit nA)
+		// Add current listener
 		id020.addCurrentListener(new BrickletIndustrialDual020mA.CurrentListener() {
 			public void current(short sensor, int current) {
 				System.out.println("Sensor: " + sensor);

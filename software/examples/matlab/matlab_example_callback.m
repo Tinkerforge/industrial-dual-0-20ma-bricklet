@@ -24,7 +24,7 @@ function matlab_example_callback()
     ipcon.disconnect();
 end
 
-% Callback function for current callback (parameter has unit nA)
+% Callback function for current callback
 function cb_current(e)
     fprintf('Sensor: %i\n', e.sensor);
     fprintf('Current: %g mA\n', e.current/1000000.0);

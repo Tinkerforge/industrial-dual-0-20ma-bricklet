@@ -3,7 +3,7 @@
 
 uid=XYZ # Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
-# Handle incoming current callbacks (parameter has unit nA)
+# Handle incoming current callbacks
 tinkerforge dispatch industrial-dual-0-20ma-bricklet $uid current &
 
 # Set period for current (sensor 1) callback to 1s (1000ms)

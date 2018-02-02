@@ -22,14 +22,14 @@ Notebook[{
    RowBox[{"id020", "@", RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for current reached callback (parameter has unit nA)", "*)"}],
+   RowBox[{"(*", "Callback function for current reached callback", "*)"}],
    RowBox[{RowBox[{"CurrentReachedCB", "[", RowBox[{"sender_", ",", "sensor_", ",", "current_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Module", "[", RowBox[{RowBox[{"{", "}"}], ",", RowBox[{"\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Sensor: \>\"", "<>", RowBox[{"ToString", "[", "sensor", "]"}]}], "]"}], ";", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Current: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"current", ",", "\"\<mA/1000000\>\""}], "]"}], "]"}], "]"}]}], "]"}], "\[IndentingNewLine]"}]}], "]"}]}],
    RowBox[{"
 "}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"id020", "@", "CurrentReachedCallback"}], ",", "CurrentReachedCB"}], "]"}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Configure threshold for current (sensor 1) ", "\"\<greater than 10 mA\>\"", " (unit is nA)", "*)"}],
+   RowBox[{"(*", "Configure threshold for current (sensor 1) ", "\"\<greater than 10 mA\>\"", "", "*)"}],
    RowBox[{"option", "=", "Tinkerforge`BrickletIndustrialDual020mA`THRESHOLDUOPTIONUGREATER"}],
    RowBox[{"id020", "@", RowBox[{"SetCurrentCallbackThreshold", "[", RowBox[{"1", ",", "option", ",", RowBox[{"10", "*", "1000000"}], ",", "0"}], "]"}]}],
    RowBox[{"

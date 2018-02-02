@@ -50,7 +50,7 @@
 
                 // Register current callback
                 id020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT,
-                    // Callback function for current callback (parameter has unit nA)
+                    // Callback function for current callback
                     function (sensor, current) {
                         textArea.value += 'Sensor: ' + sensor + '\n';
                         textArea.value += 'Current: ' + current/1000000.0 + ' mA\n';

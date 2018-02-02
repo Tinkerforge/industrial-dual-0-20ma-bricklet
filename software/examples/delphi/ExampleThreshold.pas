@@ -25,7 +25,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for current reached callback (parameter has unit nA) }
+{ Callback procedure for current reached callback }
 procedure TExample.CurrentReachedCB(sender: TBrickletIndustrialDual020mA;
                                     const sensor: byte; const current: longint);
 begin
@@ -52,7 +52,7 @@ begin
   { Register current reached callback to procedure CurrentReachedCB }
   id020.OnCurrentReached := {$ifdef FPC}@{$endif}CurrentReachedCB;
 
-  { Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA) }
+  { Configure threshold for current (sensor 1) "greater than 10 mA" }
   id020.SetCurrentCallbackThreshold(1, '>', 10*1000000, 0);
 
   WriteLn('Press key to exit');

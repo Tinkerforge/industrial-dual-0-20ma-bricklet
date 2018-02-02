@@ -16,7 +16,7 @@ $id020 = new BrickletIndustrialDual020mA(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get current current from sensor 1 (unit is nA)
+// Get current current from sensor 1
 $current = $id020->getCurrent(1);
 echo "Current (Sensor 1): " . $current/1000000.0 . " mA\n";
 

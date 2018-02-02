@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 id020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Get current current from sensor 1 (unit is nA)*)
+(*Get current current from sensor 1*)
 Print["Current (Sensor 1): "<>ToString[N[Quantity[id020@GetCurrent[1],"mA/1000000"]]]]
 
 (*Clean up*)

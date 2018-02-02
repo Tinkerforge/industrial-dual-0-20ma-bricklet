@@ -36,7 +36,7 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get current current from sensor 1 (unit is nA) }
+  { Get current current from sensor 1 }
   current := id020.GetCurrent(1);
   WriteLn(Format('Current (Sensor 1): %f mA', [current/1000000.0]));
 

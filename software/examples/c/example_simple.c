@@ -23,7 +23,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current current from sensor 1 (unit is nA)
+	// Get current current from sensor 1
 	int32_t current;
 	if(industrial_dual_0_20ma_get_current(&id020, 1, &current) < 0) {
 		fprintf(stderr, "Could not get current from sensor 1, probably timeout\n");

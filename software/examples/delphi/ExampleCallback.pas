@@ -25,7 +25,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for current callback (parameter has unit nA) }
+{ Callback procedure for current callback }
 procedure TExample.CurrentCB(sender: TBrickletIndustrialDual020mA; const sensor: byte;
                              const current: longint);
 begin

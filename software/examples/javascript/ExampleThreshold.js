@@ -19,14 +19,14 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         id020.setDebouncePeriod(10000);
 
-        // Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+        // Configure threshold for current (sensor 1) "greater than 10 mA"
         id020.setCurrentCallbackThreshold(1, '>', 10*1000000, 0);
     }
 );
 
 // Register current reached callback
 id020.on(Tinkerforge.BrickletIndustrialDual020mA.CALLBACK_CURRENT_REACHED,
-    // Callback function for current reached callback (parameter has unit nA)
+    // Callback function for current reached callback
     function (sensor, current) {
         console.log('Sensor: ' + sensor);
         console.log('Current: ' + current/1000000.0 + ' mA');

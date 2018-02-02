@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
-	// Callback function for current reached callback (parameter has unit nA)
+	// Callback function for current reached callback
 	static void CurrentReachedCB(BrickletIndustrialDual020mA sender, byte sensor,
 	                             int current)
 	{
@@ -31,7 +31,7 @@ class Example
 		// Register current reached callback to function CurrentReachedCB
 		id020.CurrentReachedCallback += CurrentReachedCB;
 
-		// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+		// Configure threshold for current (sensor 1) "greater than 10 mA"
 		id020.SetCurrentCallbackThreshold(1, '>', 10*1000000, 0);
 
 		Console.WriteLine("Press enter to exit");

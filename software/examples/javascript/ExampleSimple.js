@@ -16,7 +16,7 @@ ipcon.connect(HOST, PORT,
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function (connectReason) {
-        // Get current current from sensor 1 (unit is nA)
+        // Get current current from sensor 1
         id020.getCurrent(1,
             function (current) {
                 console.log('Current (Sensor 1): ' + current/1000000.0 + ' mA');

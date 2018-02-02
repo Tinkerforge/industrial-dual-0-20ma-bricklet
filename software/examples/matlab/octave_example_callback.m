@@ -23,7 +23,7 @@ function octave_example_callback()
     ipcon.disconnect();
 end
 
-% Callback function for current callback (parameter has unit nA)
+% Callback function for current callback
 function cb_current(e)
     fprintf("Sensor: %d\n", java2int(e.sensor));
     fprintf("Current: %g mA\n", e.current/1000000.0);

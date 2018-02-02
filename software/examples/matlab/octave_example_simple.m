@@ -11,7 +11,7 @@ function octave_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current current from sensor 1 (unit is nA)
+    % Get current current from sensor 1
     current = id020.getCurrent(1);
     fprintf("Current (Sensor 1): %g mA\n", current/1000000.0);
 

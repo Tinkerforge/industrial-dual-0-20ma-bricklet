@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 
-// Callback function for current reached callback (parameter has unit nA)
+// Callback function for current reached callback
 void cb_current_reached(uint8_t sensor, int32_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -41,7 +41,7 @@ int main(void) {
 	                                         (void *)cb_current_reached,
 	                                         NULL);
 
-	// Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+	// Configure threshold for current (sensor 1) "greater than 10 mA"
 	industrial_dual_0_20ma_set_current_callback_threshold(&id020, 1, '>', 10*1000000, 0);
 
 	printf("Press key to exit\n");

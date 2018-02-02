@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current current from sensor 1 (unit is nA)
+    # Get current current from sensor 1
     current = id020.get_current(1)
     print("Current (Sensor 1): " + str(current/1000000.0) + " mA")
 

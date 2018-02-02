@@ -19,7 +19,7 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 id020.set_debounce_period 10000
 
-# Register current reached callback (parameter has unit nA)
+# Register current reached callback
 id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED) do |sensor,
                                                                                    current|
   puts "Sensor: #{sensor}"
@@ -27,7 +27,7 @@ id020.register_callback(BrickletIndustrialDual020mA::CALLBACK_CURRENT_REACHED) d
   puts ''
 end
 
-# Configure threshold for current (sensor 1) "greater than 10 mA" (unit is nA)
+# Configure threshold for current (sensor 1) "greater than 10 mA"
 id020.set_current_callback_threshold 1, '>', 10*1000000, 0
 
 puts 'Press key to exit'

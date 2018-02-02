@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Industrial Dual 0-20mA Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_industrial_dual_0_20ma import BrickletIndustrialDual020mA
 
-# Callback function for current callback (parameter has unit nA)
+# Callback function for current callback
 def cb_current(sensor, current):
     print("Sensor: " + str(sensor))
     print("Current: " + str(current/1000000.0) + " mA")

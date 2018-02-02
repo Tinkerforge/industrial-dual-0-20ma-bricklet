@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 id020=NETNew["Tinkerforge.BrickletIndustrialDual020mA",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Callback function for current callback (parameter has unit nA)*)
+(*Callback function for current callback*)
 CurrentCB[sender_,sensor_,current_]:=
  Module[{},
   Print["Sensor: "<>ToString[sensor]];
