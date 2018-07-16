@@ -112,13 +112,13 @@ void tick(const uint8_t tick_type) {
 	BC->tick++;
 }
 
-void select(void) {
+void select_port(void) {
 	const uint8_t port = BS->port - 'a';
 	BA->bricklet_select(port);
 	PIN_SELECT.pio->PIO_SODR = PIN_SELECT.mask;
 }
 
-void deselect(void) {
+void deselect_port(void) {
 	const uint8_t port = BS->port - 'a';
 	BA->bricklet_deselect(port);
 	PIN_SELECT.pio->PIO_CODR = PIN_SELECT.mask;
@@ -139,7 +139,7 @@ void mcp3422_write_configuration(const uint8_t channel, const uint8_t rate) {
 		case 3: value |= CONFIG_CONVERSION_SAMPLE_RATE_4_SPS; BC->next_sample_wait = 1000/4; break;
 	}
 
-	select();
+	select_port();
    	if(BA->mutex_take(*BA->mutex_twi_bricklet, 0)) {
 		BA->TWID_Write(BA->twid,
 					  I2C_ADDRESS_FLOAT,
@@ -154,7 +154,7 @@ void mcp3422_write_configuration(const uint8_t channel, const uint8_t rate) {
 		BC->current_rate = rate;
 		BC->next_rate = rate;
    	}
-	deselect();
+	deselect_port();
 
 }
 
@@ -170,7 +170,7 @@ int32_t mcp3422_read_current(const int32_t old_current) {
 		num_values = 4;
 	}
 
-	select();
+	select_port();
    	if(BA->mutex_take(*BA->mutex_twi_bricklet, 0)) {
 		BA->TWID_Read(BA->twid,
 					  I2C_ADDRESS_FLOAT,
@@ -181,7 +181,7 @@ int32_t mcp3422_read_current(const int32_t old_current) {
 					  NULL);
 		BA->mutex_give(*BA->mutex_twi_bricklet);
    	}
-   	deselect();
+	deselect_port();
 
 	if(value[num_values-1] & CONFIG_READY) {
 		return BC->value[BC->current_channel];
