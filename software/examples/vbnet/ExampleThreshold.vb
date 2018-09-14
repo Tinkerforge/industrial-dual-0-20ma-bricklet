@@ -27,7 +27,7 @@ Module ExampleThreshold
         ' Register current reached callback to subroutine CurrentReachedCB
         AddHandler id020.CurrentReachedCallback, AddressOf CurrentReachedCB
 
-        ' Configure threshold for current "greater than 10 mA"
+        ' Configure threshold for current (sensor 1) "greater than 10 mA"
         id020.SetCurrentCallbackThreshold(1, ">"C, 10*1000000, 0)
 
         Console.WriteLine("Press key to exit")
