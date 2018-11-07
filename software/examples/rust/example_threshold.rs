@@ -15,10 +15,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Get threshold receivers with a debounce time of 10 seconds (10000ms).
     id020.set_debounce_period(10000);
 
-    // Create receiver for current reached events.
-    let current_reached_receiver = id020.get_current_reached_receiver();
+    let current_reached_receiver = id020.get_current_reached_callback_receiver();
 
-    // Spawn thread to handle received events. This thread ends when the `id020` object
+    // Spawn thread to handle received callback messages.
+    // This thread ends when the `id020` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
         for current_reached in current_reached_receiver {
