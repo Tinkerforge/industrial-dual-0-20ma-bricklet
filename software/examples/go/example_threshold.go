@@ -23,7 +23,7 @@ func main() {
 
 	id020.RegisterCurrentReachedCallback(func(sensor uint8, current int32) {
 		fmt.Printf("Sensor: %d\n", sensor)
-		fmt.Printf("Current: %d mA\n", float64(current)/1000000.0)
+		fmt.Printf("Current: %f mA\n", float64(current)/1000000.0)
 		fmt.Println()
 	})
 
