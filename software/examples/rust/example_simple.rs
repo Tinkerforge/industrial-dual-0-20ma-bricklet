@@ -1,6 +1,8 @@
-use std::{error::Error, io};
+use std::{io, error::Error};
 
-use tinkerforge::{industrial_dual_0_20ma_bricklet::*, ip_connection::IpConnection};
+use tinkerforge::{ip_connection::IpConnection, 
+                  industrial_dual_0_20ma_bricklet::*};
+
 
 const HOST: &str = "localhost";
 const PORT: u16 = 4223;
@@ -11,11 +13,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     let id020 = IndustrialDual020maBricklet::new(UID, &ipcon); // Create device object.
 
     ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
-                                          // Don't use device before ipcon is connected.
+    // Don't use device before ipcon is connected.
 
-    // Get current current from sensor 1.
-    let current = id020.get_current(1).recv()?;
-    println!("Current (Sensor 1): {} mA", current as f32 / 1000000.0);
+		// Get current current from sensor 1.
+let current = id020.get_current(1).recv()?;
+		println!("Current (Sensor 1): {} mA", current as f32 /1000000.0);
 
     println!("Press enter to exit.");
     let mut _input = String::new();
