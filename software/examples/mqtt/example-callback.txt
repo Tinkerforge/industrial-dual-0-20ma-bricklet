@@ -4,6 +4,7 @@ setup:
 	# Handle incoming current callbacks
 	subscribe to tinkerforge/callback/industrial_dual_0_20ma_bricklet/XYZ/current
 	publish '{"register": true}' to tinkerforge/register/industrial_dual_0_20ma_bricklet/XYZ/current # Register current callback
+	
 	# Set period for current (sensor 1) callback to 1s (1000ms)
 	# Note: The current (sensor 1) callback is only called every second
 	#       if the current (sensor 1) has changed since the last call!

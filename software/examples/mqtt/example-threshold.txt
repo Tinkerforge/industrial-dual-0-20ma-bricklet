@@ -3,8 +3,10 @@
 setup:
 	# Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	publish '{"debounce": 10000}' to tinkerforge/request/industrial-dual-0-20ma_bricklet/XYZ/set_debounce_period
+	
 	# Handle incoming current reached callbacks
 	subscribe to tinkerforge/callback/industrial_dual_0_20ma_bricklet/XYZ/current_reached
 	publish '{"register": true}' to tinkerforge/register/industrial_dual_0_20ma_bricklet/XYZ/current_reached # Register current_reached callback
+	
 	# Configure threshold for current (sensor 1) "greater than 10 mA"
-	publish '{"sensor": 1, "option": "greater", "min_current": 10000000, "max_current": 0}' to tinkerforge/request/industrial_dual_0_20ma_bricklet/XYZ/set_current_callback_threshold
+	publish '{"sensor": 1, "option": "greater", "min": 10000000, "max": 0}' to tinkerforge/request/industrial_dual_0_20ma_bricklet/XYZ/set_current_callback_threshold
