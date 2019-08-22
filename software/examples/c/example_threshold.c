@@ -38,7 +38,7 @@ int main(void) {
 	// Register current reached callback to function cb_current_reached
 	industrial_dual_0_20ma_register_callback(&id020,
 	                                         INDUSTRIAL_DUAL_0_20MA_CALLBACK_CURRENT_REACHED,
-	                                         (void *)cb_current_reached,
+	                                         (void (*)(void))cb_current_reached,
 	                                         NULL);
 
 	// Configure threshold for current (sensor 1) "greater than 10 mA"
