@@ -29,5 +29,5 @@ if __name__ == "__main__":
     #       if the current (sensor 1) has changed since the last call!
     id020.set_current_callback_period(1, 1000)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
