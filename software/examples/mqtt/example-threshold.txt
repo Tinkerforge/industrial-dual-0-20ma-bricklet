@@ -2,7 +2,7 @@
 
 setup:
 	# Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-	publish '{"debounce": 10000}' to tinkerforge/request/industrial-dual-0-20ma_bricklet/XYZ/set_debounce_period
+	publish '{"debounce": 10000}' to tinkerforge/request/industrial_dual_0_20ma_bricklet/XYZ/set_debounce_period
 
 	# Handle incoming current reached callbacks
 	subscribe to tinkerforge/callback/industrial_dual_0_20ma_bricklet/XYZ/current_reached
